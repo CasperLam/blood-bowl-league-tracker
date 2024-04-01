@@ -1,70 +1,238 @@
-# Getting Started with Create React App
+# Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Blood Bowl League Tracker
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+A league tracker for the board game "Blood Bowl" made by Games Workshop.
 
-### `npm start`
+Similar to sports in real life, matches are played between 2 players from a pool of players called a league. This app is going to make it easier for the person running the Blood Bowl league to keep track of which teams are in which leagues and the results of all the matches between the players in the league.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Problem
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Keeping accurate records of match statistics (scores, casualties, etc) is cumbersome and not easily done. Setting up your own individual league tracker requires a lot of time and effort
 
-### `npm test`
+### User Profile
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+League commissioner: the person organising a league and tracking the match results (could also be a player)
+Coach: the person playing games of Blood Bowl with one of the teams in the league. (They will have one team each) - This is a nice to have.
 
-### `npm run build`
+### Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Sign up/ login
+- League creator
+- League table view
+- View past seasons of a league
+- CRUD teams
+- CRUD leagues
+- CRUD matches
+- View league standings
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### League Commissioners:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As a league commissioner, I want to:
 
-### `npm run eject`
+- sign up for the app and create an account, providing necessary information such as username, email, and password.
+- login and logout.
+- be able to create new leagues, specifying league name.
+- be able to edit and delete a league.
+- be able to start a new season in an existing league.
+- view league tables for my leagues showing; team rankings, W/D/L record, bonus points scored, total casualties and TDs (scored, conceded and differential)
+- view the league table for past seasons.
+- add teams specifying team name, coach name and team race
+- be able to enter match results (scores and casualties caused by each team).
+- be able to edit and delete match results.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Coach:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As a coach, I want to:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- sign up for the app and create an account, providing necessary information such as username, email, and password.
+- browse available leagues and apply to join one, submitting my team details for review by the league commissioner.
+- view the league(s) I am currently participating in, including standings, upcoming matches, and league announcements.
+- submit match results for games played against other teams in the league, providing details such as score, touchdowns, and casualties.
+- be able to view past match results and team statistics for myself and other teams in the league.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Implementation
 
-## Learn More
+### Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- HTML
+- CSS
+- JavaScript
+- React
+- Express
+- MySQL
+- Knex
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### APIs
 
-### Code Splitting
+FUMBBL: https://fumbbl.com/apidoc/FUMBBL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Sitemap
 
-### Analyzing the Bundle Size
+- Sign up: Page for new users to sign up to the app.
+- Login: Page for users to login to the app.
+- User Settings: Page for a user to change their details and app settings.
+- My Leagues: Page with the full list of the leagues a user has created.
+- League Table: Page that shows the league table for a selected league. The table will show each team in that league with their league points and match statistics.
+- Team View: Page to show a focused view of a single team, including match history and teams details such as name, faction and head coach (the person playing that team).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Mockups
 
-### Making a Progressive Web App
+Sign up / Login page:
+![](image.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+User Settings:
 
-### Advanced Configuration
+My Leagues:
+![](image-1.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+League Table:
+![](image-2.png)
 
-### Deployment
+Team Details:
+![](image-3.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Data
 
-### `npm run build` fails to minify
+Below shows the relationships between databases but not all fields in each database:
+![](image-4.png)
+We haven't learnt about how to do authorisation yet so those databases aren't shown.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Endpoints
+
+#### Post /leagues
+
+#### GET /leagues
+
+- Returns an array of league objects
+- Contains only enough information to display in the league list
+- Response example:
+  [
+  {
+  "id": "84e96018-4022-434e-80bf-000ce4cd12b8",
+  "name": "Lustrian Super League",
+  "user-id": "191de346-b3c2-47b4-bf5b-6db90d1e3bdc",
+  "teams": "8"
+  },
+  {
+  "id": "2d818087-c1f4-4ec2-bcdc-b545fd6ec258",
+  "name": "Halfling Thimble Cup",
+  "user_id": "76ca28c0-7dea-4553-887f-8e5129a80fc3",
+  "teams": "14"
+  }
+  ]
+
+#### GET /leagues/:id
+
+- `:id` must be swapped out with the id of a league in the list of leagues
+- Returns a detailed object of a single league including match stats for each team in that league
+- Response example:
+  {
+  "id": "84e96018-4022-434e-80bf-000ce4cd12b8",
+  "name": "Lustrian Super League",
+  "teams": [
+  {
+  "id": "894b2ef9-640e-4d55-95ac-c65cfc39d693",
+  "name": "Gwakamoli Crater Gators",
+  "faction": "Lizardmen",
+  "points": "12",
+  "head_coach": "Bob Bifford"
+  "wins": "3",
+  "draws": "1",
+  "losses": "0",
+  "TDFor": "8",
+  "TDAgainst": "3",
+  "casualties": "10",
+  "teamValue": "1220"
+  },
+  {
+  "id": "6ff4314c-acde-4c91-a753-95cb7a366ee9",
+  "name": "Greenfield Grasshuggers",
+  "faction": "Halflings",
+  "points": "2",
+  "head_coach": "Jim Jampire"
+  "wins": "0",
+  "draws": "1",
+  "losses": "3",
+  "TDFor": "6",
+  "TDAgainst": "10",
+  "casualties": "2",
+  "teamValue": "950"
+  }
+  ]
+  }
+
+#### PUT /leagues/:id
+
+#### DELETE /leagues/:id
+
+#### POST /teams
+
+#### GET /teams/:id
+
+#### PUT /teams/:id
+
+#### DELETE /teams/:id
+
+#### POST /matches
+
+#### GET /matches
+
+#### PUT /matches/:id
+
+#### DELETE /matches/:id
+
+### Auth
+
+I'm planning for having user accounts which will require them to sign up and login/logout, but we havne't learnt about that yet.
+
+## Roadmap
+
+Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
+
+- Set up databases
+- Create seed data
+- Build endpoints
+  - See endpoints above
+- Build header
+- Build footer
+- Build my leagues page
+  - Subheader
+  - League cards
+  - Add league modal
+  - Edit league modal
+  - Delete league modal
+- Build league table page
+  - Subheader
+  - League table
+  - Add match result modal
+- Build team details page
+  - Subheader
+  - Team details
+  - Match record
+  - Edit team details modal
+  - Delete team modal
+  - Edit match result modal
+  - Delete match result modal
+- Build sign up page
+  - Subheader
+  - Form
+  - Validation
+- Build login page
+  - Subheader
+  - Form
+  - Validation
+- Build user settings page
+  - TBD
+
+## Nice-to-haves
+
+- Sort league table
+- Add logos to teams. Placeholder based on team race, but can be custom.
+- League settings: league point values, what bonus points are available, etc.
+- Coach users - see 'User Profile' and 'Features' above.
+- Comissioners to be able to:
+  - view all players registered in each of their leagues and manage their memberships, including adding, removing, approving and changing the status (active/inactive) of players.
+  - review and approve match results submitted by players, ensuring they comply with league rules.
