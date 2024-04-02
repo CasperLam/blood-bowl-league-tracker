@@ -14,19 +14,17 @@ Keeping accurate records of match statistics (scores, casualties, etc) is cumber
 
 ### User Profile
 
-League commissioner: the person organising a league and tracking the match results (could also be a player)
-Coach: the person playing games of Blood Bowl with one of the teams in the league. (They will have one team each) - This is a nice to have.
+League commissioner: the person organising a league and tracking the match results.
+Coach (nice to have): the person playing games of Blood Bowl with one of the teams in the league.
 
 ### Features
 
 - Sign up/ login
 - League creator
 - League table view
-- View past seasons of a league
 - CRUD teams
 - CRUD leagues
 - CRUD matches
-- View league standings
 
 #### League Commissioners:
 
@@ -43,7 +41,7 @@ As a league commissioner, I want to:
 - be able to enter match results (scores and casualties caused by each team).
 - be able to edit and delete match results.
 
-#### Coach:
+#### Coach (Nice to have):
 
 As a coach, I want to:
 
@@ -73,32 +71,31 @@ FUMBBL: https://fumbbl.com/apidoc/FUMBBL
 
 - Sign up: Page for new users to sign up to the app.
 - Login: Page for users to login to the app.
-- User Settings: Page for a user to change their details and app settings.
-- My Leagues: Page with the full list of the leagues a user has created.
+- My Leagues (this is the homepage): Page with the full list of the leagues a user has created.
 - League Table: Page that shows the league table for a selected league. The table will show each team in that league with their league points and match statistics.
 - Team View: Page to show a focused view of a single team, including match history and teams details such as name, faction and head coach (the person playing that team).
 
 ### Mockups
 
-Sign up / Login page:
-![](image.png)
+Sign up:
+![alt text](./assets/readmeImages/image.png)
 
-User Settings:
+Login page:
+![alt text](./assets/readmeImages/image-1.png)
 
 My Leagues:
-![](image-1.png)
+![alt text](./assets/readmeImages/image-2.png)
 
 League Table:
-![](image-2.png)
+![alt text](./assets/readmeImages/image-3.png)
 
 Team Details:
-![](image-3.png)
+![alt text](./assets/readmeImages/image-4.png)
 
 ### Data
 
-Below shows the relationships between databases but not all fields in each database:
-![](image-4.png)
-We haven't learnt about how to do authorisation yet so those databases aren't shown.
+Below shows the relationships between databases:
+![alt text](./assets/readmeImages/image-5.png)
 
 ### Endpoints
 
@@ -202,20 +199,19 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
   - Subheader
   - League cards
   - Add league modal
-  - Edit league modal
-  - Delete league modal
+  - Edit/delete league modal
 - Build league table page
   - Subheader
   - League table
   - Add match result modal
-- Build team details page
+  - Add team modal
+- Team details page
   - Subheader
   - Team details
   - Match record
-  - Edit team details modal
-  - Delete team modal
-  - Edit match result modal
-  - Delete match result modal
+  - Edit/delete team details modal
+  - Add match result modal
+  - Edit/delete match result modal
 - Build sign up page
   - Subheader
   - Form
@@ -224,6 +220,8 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
   - Subheader
   - Form
   - Validation
+- User authentication
+  - TBD
 - Build user settings page
   - TBD
 
@@ -232,6 +230,7 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
 - Sort league table
 - Add logos to teams. Placeholder based on team race, but can be custom.
 - League settings: league point values, what bonus points are available, etc.
+- User settings: allow users to change their username and password.
 - Coach users - see 'User Profile' and 'Features' above.
 - Comissioners to be able to:
   - view all players registered in each of their leagues and manage their memberships, including adding, removing, approving and changing the status (active/inactive) of players.
