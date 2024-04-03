@@ -176,21 +176,19 @@ We haven't learnt about how to do authorisation yet so those databases aren't sh
 
 #### DELETE /teams/:id
 
-#### POST /matches
+#### POST /matches - nice to have
 
-#### GET /matches
+#### GET /matches - nice to have
 
-#### PUT /matches/:id
+#### PUT /matches/:id - nice to have
 
-#### DELETE /matches/:id
+#### DELETE /matches/:id - nice to have
 
 ### Auth
 
 I'm planning for having user accounts which will require them to sign up and login/logout, but we havne't learnt about that yet.
 
 ## Roadmap
-
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
 
 - Set up databases
 - Create seed data
@@ -202,20 +200,14 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
   - Subheader
   - League cards
   - Add league modal
-  - Edit league modal
-  - Delete league modal
+  - Edit/delete league modal
 - Build league table page
   - Subheader
   - League table
-  - Add match result modal
 - Build team details page
   - Subheader
   - Team details
-  - Match record
-  - Edit team details modal
-  - Delete team modal
-  - Edit match result modal
-  - Delete match result modal
+  - Edit/delete team details modal
 - Build sign up page
   - Subheader
   - Form
@@ -224,11 +216,17 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
   - Subheader
   - Form
   - Validation
-- Build user settings page
-  - TBD
 
 ## Nice-to-haves
 
+- Match results (and statistics are calculated automatically):
+  - League table page:
+    - Add match result modal
+  - Team page changes:
+    - Match record
+    - Edit match result modal
+    - Delete match result modal
+- User settings page
 - Sort league table
 - Add logos to teams. Placeholder based on team race, but can be custom.
 - League settings: league point values, what bonus points are available, etc.
