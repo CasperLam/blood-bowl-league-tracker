@@ -1,0 +1,69 @@
+@use "./variables" as *;
+
+@mixin tablet-and-desktop {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin flex($direction: row, $justify-conent: center, $align-items: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-conent;
+  align-items: $align-items;
+}
+
+@mixin button-primary {
+  background-color: $accent-primary;
+  color: $text-primary;
+  padding: 0.5rem auto;
+  border-radius: 1rem;
+  border: none;
+
+  @include tablet-and-desktop {
+    padding: 0.5rem 1.5rem;
+  }
+
+  &:hover {
+    opacity: 0.75;
+    color: $text-secondary;
+  }
+}
+
+@mixin button-secondary {
+  background-color: $accent-secondary;
+  color: $text-primary;
+  padding: 0.5rem auto;
+  border-radius: 1rem;
+  border: none;
+
+  @include tablet-and-desktop {
+    padding: 0.5rem 1.5rem;
+  }
+
+  &:hover {
+    opacity: 0.75;
+    color: $text-secondary;
+  }
+}
+
+@mixin form-field {
+  padding: 0.5rem auto;
+  border-radius: 1rem;
+  border: 1px solid $text-placeholder;
+
+  &:active,
+  &:focus {
+    outline: 1px solid $interactive;
+  }
+
+  &::placeholder {
+    color: $text-placeholder;
+  }
+}
