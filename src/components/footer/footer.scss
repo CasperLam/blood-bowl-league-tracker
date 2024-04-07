@@ -1,0 +1,36 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+  background-color: $bg-primary;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
+  &__container {
+    @include flex(row, space-between);
+    gap: 1rem;
+    max-width: $max-width;
+    margin: auto;
+    padding: 1rem;
+
+    @include tablet-and-desktop {
+      gap: 2rem;
+      padding: 2rem;
+    }
+  }
+
+  &__text {
+    font-size: 0.75rem;
+    &--quote {
+      display: none;
+      background-color: $bg-secondary;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 5px 5px $bg-secondary;
+
+      @include tablet-and-desktop {
+        display: block;
+      }
+    }
+  }
+}
