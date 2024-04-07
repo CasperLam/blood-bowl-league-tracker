@@ -22,12 +22,16 @@
 @mixin button-primary {
   background-color: $accent-primary;
   color: $text-primary;
-  padding: 0.5rem auto;
-  border-radius: 1rem;
+  font-weight: 500;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 2rem;
   border: none;
 
   @include tablet-and-desktop {
-    padding: 0.5rem 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    width: fit-content;
   }
 
   &:hover {
@@ -39,12 +43,16 @@
 @mixin button-secondary {
   background-color: $accent-secondary;
   color: $text-primary;
-  padding: 0.5rem auto;
-  border-radius: 1rem;
-  border: none;
+  font-weight: 500;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 2rem;
+  border: 3px solid $accent-primary;
 
   @include tablet-and-desktop {
-    padding: 0.5rem 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    width: fit-content;
   }
 
   &:hover {

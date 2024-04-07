@@ -78,24 +78,24 @@ FUMBBL: https://fumbbl.com/apidoc/FUMBBL
 ### Mockups
 
 Sign up:
-![alt text](./assets/readmeImages/image.png)
+![alt text](./src/assets/readmeImages/image.png)
 
 Login page:
-![alt text](./assets/readmeImages/image-1.png)
+![alt text](./src/assets/readmeImages/image-1.png)
 
 My Leagues:
-![alt text](./assets/readmeImages/image-2.png)
+![alt text](./src/assets/readmeImages/image-2.png)
 
 League Table:
-![alt text](./assets/readmeImages/image-3.png)
+![alt text](./src/assets/readmeImages/image-3.png)
 
 Team Details:
-![alt text](./assets/readmeImages/image-4.png)
+![alt text](./src/assets/readmeImages/image-4.png)
 
 ### Data
 
 Below shows the relationships between databases:
-![alt text](./assets/readmeImages/image-5.png)
+![alt text](./src/assets/readmeImages/image-5.png)
 
 ### Endpoints
 

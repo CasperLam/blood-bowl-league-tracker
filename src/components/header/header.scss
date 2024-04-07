@@ -1,0 +1,52 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  background-color: $bg-primary;
+
+  &__container {
+    @include flex(row, space-between);
+    max-width: $max-width;
+    margin: auto;
+    padding: 1rem;
+
+    @include tablet-and-desktop {
+      padding: 2rem;
+    }
+  }
+
+  &__burger {
+    position: relative;
+    @include tablet-and-desktop {
+      display: none;
+    }
+  }
+
+  &__btn {
+    @include button-primary;
+    display: none;
+
+    @include tablet-and-desktop {
+      display: block;
+    }
+  }
+}
+
+.mobile-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  padding: 1rem;
+  background-color: $bg-secondary;
+  @include flex(column, normal, end);
+  gap: 1rem;
+
+  @include tablet-and-desktop {
+    display: none;
+  }
+
+  &__btn {
+    @include button-primary;
+  }
+}
