@@ -1,1 +1,6 @@
+@use "./styles/variables" as *;
 @use "./styles/resets";
+
+#root {
+  background-color: $text-secondary;
+}
