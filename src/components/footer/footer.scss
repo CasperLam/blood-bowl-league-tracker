@@ -8,15 +8,12 @@
   bottom: 0;
 
   &__container {
+    @include container;
     @include flex(row, space-between);
     gap: 1rem;
-    max-width: $max-width;
-    margin: auto;
-    padding: 1rem;
 
     @include tablet-and-desktop {
       gap: 2rem;
-      padding: 2rem;
     }
   }
 

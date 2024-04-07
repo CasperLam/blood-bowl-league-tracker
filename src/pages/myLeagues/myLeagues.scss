@@ -1,0 +1,20 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.subheader {
+  @include container;
+  @include flex(row, space-between);
+  gap: 1rem;
+
+  &__text {
+    width: 100%;
+
+    @include tablet-and-desktop {
+      width: fit-content;
+    }
+  }
+
+  &__btn {
+    @include button-primary;
+  }
+}

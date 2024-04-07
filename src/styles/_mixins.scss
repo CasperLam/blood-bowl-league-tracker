@@ -61,6 +61,16 @@
   }
 }
 
+@mixin container {
+  padding: 1rem;
+  max-width: $max-width;
+  margin: auto;
+
+  @include tablet-and-desktop {
+    padding: 2rem;
+  }
+}
+
 @mixin form-field {
   padding: 0.5rem auto;
   border-radius: 1rem;

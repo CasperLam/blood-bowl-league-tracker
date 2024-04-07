@@ -5,14 +5,8 @@
   background-color: $bg-primary;
 
   &__container {
+    @include container;
     @include flex(row, space-between);
-    max-width: $max-width;
-    margin: auto;
-    padding: 1rem;
-
-    @include tablet-and-desktop {
-      padding: 2rem;
-    }
   }
 
   &__burger {
