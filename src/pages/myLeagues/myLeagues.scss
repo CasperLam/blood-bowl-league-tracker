@@ -31,4 +31,8 @@
   @include flex;
   flex-wrap: wrap;
   gap: 1rem;
+
+  @include tablet-and-desktop {
+    gap: 2rem;
+  }
 }

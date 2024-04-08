@@ -4,7 +4,8 @@
 @use "./styles/resets";
 
 #root {
+  @include flex(column, normal, normal);
   background-color: $text-secondary;
   min-height: 100vh;
-  @include flex(column, normal, normal);
+  color: $text-primary;
 }
