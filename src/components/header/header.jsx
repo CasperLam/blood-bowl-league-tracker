@@ -13,7 +13,8 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <h1 className="header__title">BBLT</h1>
+        <h1 className="header__title header__title--mobile">BBLT</h1>
+        <h1 className="header__title">Blood Bowl League Tracker</h1>
         <button className="header__btn">Log Out</button>
         <img
           src={burger}

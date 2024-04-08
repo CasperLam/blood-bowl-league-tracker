@@ -9,6 +9,23 @@
     @include flex(row, space-between);
   }
 
+  &__title {
+    @include logo-text;
+    display: none;
+
+    @include tablet-and-desktop {
+      display: block;
+    }
+
+    &--mobile {
+      display: block;
+
+      @include tablet-and-desktop {
+        display: none;
+      }
+    }
+  }
+
   &__burger {
     position: relative;
     @include tablet-and-desktop {

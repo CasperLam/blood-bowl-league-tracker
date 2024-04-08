@@ -1,10 +1,18 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-.subheader {
+.myLeagues {
   @include container;
+}
+
+.subheader {
   @include flex(row, space-between);
   gap: 1rem;
+  padding-bottom: 1rem;
+
+  @include tablet-and-desktop {
+    padding-bottom: 2rem;
+  }
 
   &__text {
     width: 100%;
@@ -17,4 +25,10 @@
   &__btn {
     @include button-primary;
   }
+}
+
+.leagues {
+  @include flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
