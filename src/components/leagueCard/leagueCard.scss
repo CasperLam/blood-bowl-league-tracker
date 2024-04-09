@@ -3,11 +3,7 @@
 
 .leagues {
   &__card {
-    background: linear-gradient(
-      135deg,
-      $accent-secondary 0%,
-      $accent-primary 100%
-    );
+    @include linear-gradient;
     padding: 1rem;
     position: relative;
     width: 100%;

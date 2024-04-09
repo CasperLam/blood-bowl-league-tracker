@@ -19,9 +19,18 @@
   align-items: $align-items;
 }
 
+@mixin linear-gradient {
+  background: linear-gradient(
+    135deg,
+    $accent-secondary 15%,
+    $accent-primary 85%
+  );
+}
+
 @mixin logo-text {
-  background-color: $bg-secondary;
-  box-shadow: 0 0 5px 7px $accent-primary, inset 0 0 10px 10px $accent-secondary;
+  border-radius: 50%;
+  padding: 0.5rem;
+  @include linear-gradient;
 }
 
 @mixin button-primary {

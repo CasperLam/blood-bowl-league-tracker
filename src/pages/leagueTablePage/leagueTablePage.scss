@@ -7,10 +7,6 @@
 
 .table {
   &__header {
-    background: linear-gradient(
-      135deg,
-      $accent-secondary 0%,
-      $accent-primary 100%
-    );
+    @include linear-gradient;
   }
 }
