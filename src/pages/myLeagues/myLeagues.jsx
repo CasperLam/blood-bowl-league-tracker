@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import LeagueCard from "../../components/leagueCard/leagueCard";
 import "./myLeagues.scss";
 import axios from "axios";
+import Subheader from "../../components/subheader/subheader";
 
 export default function MyLeagues() {
   // const apiURL = process.env.REACT_APP_API_URL;
@@ -25,10 +26,11 @@ export default function MyLeagues() {
 
   return (
     <div className="myLeagues">
-      <section className="subheader">
-        <h2 className="subheader__text">My Leagues</h2>
-        <button className="subheader__btn">+ Add League</button>
-      </section>
+      <Subheader
+        titleText="My Leagues"
+        buttonText="+ Add League"
+        buttonFunction=""
+      />
       <section className="leagues">
         {allLeagues &&
           allLeagues.map((league) => {

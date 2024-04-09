@@ -34,8 +34,8 @@
   }
 
   &__buttons {
-    @include flex(column);
-    gap: 1rem;
+    @include flex(column, space-between);
+    height: 3.25rem;
     position: absolute;
     right: 1rem;
     background-color: $bg-transparent;
@@ -46,6 +46,10 @@
     @include tablet-and-desktop {
       right: 2rem;
     }
+  }
+
+  &__icon {
+    width: 1rem;
   }
 
   &__img {

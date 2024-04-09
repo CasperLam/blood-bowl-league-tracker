@@ -1,0 +1,16 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.leagueTable {
+  @include container;
+}
+
+.table {
+  &__header {
+    background: linear-gradient(
+      135deg,
+      $accent-secondary 0%,
+      $accent-primary 100%
+    );
+  }
+}

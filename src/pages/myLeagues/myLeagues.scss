@@ -5,28 +5,6 @@
   @include container;
 }
 
-.subheader {
-  @include flex(row, space-between);
-  gap: 1rem;
-  padding-bottom: 1rem;
-
-  @include tablet-and-desktop {
-    padding-bottom: 2rem;
-  }
-
-  &__text {
-    width: 100%;
-
-    @include tablet-and-desktop {
-      width: fit-content;
-    }
-  }
-
-  &__btn {
-    @include button-primary;
-  }
-}
-
 .leagues {
   @include flex;
   flex-wrap: wrap;
