@@ -2,12 +2,13 @@ import edit_icon from "../../assets/icons/edit_icon.svg";
 import delete_icon from "../../assets/icons/delete_icon.svg";
 import "./leagueCard.scss";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function LeagueCard({ id, name, date }) {
-  const apiURL = `http://localhost:5050`;
-  const user_id = 1;
+  const apiURL = process.env.REACT_APP_API_URL;
+  const { user_id } = useParams();
 
   const [teamCount, setTeamCount] = useState(0);
 
@@ -27,7 +28,11 @@ export default function LeagueCard({ id, name, date }) {
   }, []);
 
   return (
-    <Link className="leagues__card" to={`/league-table/${id}`}>
+    <Link
+      className="leagues__card"
+      to={`/league-table/${user_id}/${id}`}
+      state={{ name: name }}
+    >
       <h3 className="leagues__name">{name}</h3>
       <div className="leagues__buttons">
         <img src={edit_icon} alt="edit icon" className="leagues__icon" />

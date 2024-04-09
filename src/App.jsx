@@ -12,8 +12,11 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<MyLeaguesPage />} />
-        <Route path="/league-table/:league_id" element={<LeagueTablePage />} />
+        <Route path="/:user_id" element={<MyLeaguesPage />} />
+        <Route
+          path="/league-table/:user_id/:league_id"
+          element={<LeagueTablePage />}
+        />
         <Route path="/team-details" element={<TeamDetailsPage />} />
       </Routes>
       <Footer />

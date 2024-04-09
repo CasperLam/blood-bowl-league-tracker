@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import LeagueCard from "../../components/leagueCard/leagueCard";
 import "./myLeaguesPage.scss";
 import axios from "axios";
 import Subheader from "../../components/subheader/subheader";
 
 export default function MyLeaguesPage() {
-  // const apiURL = process.env.REACT_APP_API_URL;
-  const apiURL = `http://localhost:5050`;
-  const user_id = 1;
+  const apiURL = process.env.REACT_APP_API_URL;
+  const { user_id } = useParams();
 
   const [allLeagues, setAllLeagues] = useState(null);
 

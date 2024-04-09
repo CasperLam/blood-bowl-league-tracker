@@ -5,7 +5,7 @@ import axios from "axios";
 import TeamDetailsCard from "../../components/teamDetailsCard/teamDetailsCard";
 
 export default function TeamDetailsPage() {
-  const apiURL = `http://localhost:5050`;
+  const apiURL = process.env.REACT_APP_API_URL;
   const user_id = 1;
   const league_id = 1;
   const team_id = 1;
@@ -15,8 +15,7 @@ export default function TeamDetailsPage() {
   const getTeamData = async () => {
     try {
       const { data } = await axios.get(
-        `${apiURL}/api/teams/1/1/2`
-        // `${apiURL}/api/teams/${user_id}/${league_id}/${team_id}`
+        `${apiURL}/api/teams/${user_id}/${league_id}/${team_id}`
       );
       setTeamData(data[0]);
     } catch (error) {

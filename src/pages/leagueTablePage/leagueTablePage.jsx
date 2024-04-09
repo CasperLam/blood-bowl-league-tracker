@@ -1,16 +1,68 @@
+import Table from "../../components/leagueTable/table";
 import Subheader from "../../components/subheader/subheader";
+import { useParams, useLocation } from "react-router-dom";
 import "./leagueTablePage.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import BasicTable from "../../components/basictable/basictable";
 
 export default function LeagueTablePage() {
+  const apiURL = process.env.REACT_APP_API_URL;
+
+  const { user_id, league_id } = useParams();
+  const location = useLocation();
+  const { name } = location.state;
+
+  const [leagueData, setLeagueData] = useState(null);
+
+  const getLeagueData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/leagues/${user_id}/${league_id}`
+      );
+      setLeagueData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLeagueData();
+  }, []);
+
+  const columns = [
+    {
+      Header: `Team Name`,
+      accessor: `name`,
+    },
+    {
+      Header: `Faction`,
+      accessor: `faction`,
+    },
+    {
+      Header: `Head Coach`,
+      accessor: `head_coach`,
+    },
+    {
+      Header: `Points`,
+      accessor: `points`,
+    },
+    {
+      Header: `Team Value`,
+      accessor: `team_value`,
+    },
+  ];
+
   return (
     <div className="leagueTable">
       <Subheader
-        titleText="Lustrian Superleague"
+        titleText={name}
         isButton={true}
         buttonText="+ Add Team"
         buttonFunction=""
       />
-      <table className="table">
+      {leagueData && <BasicTable columns={columns} data={leagueData} />}
+      {/* <table className="table">
         <thead className="table__header">
           <tr>
             <td className="table__heads">Team Name</td>
@@ -46,7 +98,7 @@ export default function LeagueTablePage() {
           <td className="table__text">0</td>
           <td className="table__text">990</td>
         </tr>
-      </table>
+      </table> */}
     </div>
   );
 }
