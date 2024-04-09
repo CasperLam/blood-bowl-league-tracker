@@ -1,9 +1,33 @@
-import edit_icon from "../../assets/icons/edit_icon.svg";
-import delete_icon from "../../assets/icons/delete_icon.svg";
 import Subheader from "../../components/subheader/subheader";
 import "./teamDetailsPage.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import TeamDetailsCard from "../../components/teamDetailsCard/teamDetailsCard";
 
 export default function TeamDetailsPage() {
+  const apiURL = `http://localhost:5050`;
+  const user_id = 1;
+  const league_id = 1;
+  const team_id = 1;
+
+  const [teamData, setTeamData] = useState(null);
+
+  const getTeamData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${apiURL}/api/teams/1/1/2`
+        // `${apiURL}/api/teams/${user_id}/${league_id}/${team_id}`
+      );
+      setTeamData(data[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTeamData();
+  }, []);
+
   return (
     <div className="team-details">
       <Subheader
@@ -12,43 +36,14 @@ export default function TeamDetailsPage() {
         buttonText="+ Add Team"
         buttonFunction=""
       />
-      <section className="details">
-        <header className="details__header">
-          <h3 className="details__title">Team Info</h3>
-          <div className="details__buttons">
-            <img src={edit_icon} alt="edit icon" className="details__icon" />
-            <img
-              src={delete_icon}
-              alt="delete icon"
-              className="details__icon"
-            />
-          </div>
-        </header>
-        <div className="details__content">
-          <div className="details__wrapper">
-            <div className="details__text">
-              <p className="details__key">Team Name:</p>
-              <p className="details__value">Gwaka'moli Crater Gators</p>
-            </div>
-            <div className="details__text">
-              <p className="details__key">Points:</p>
-              <p className="details__value">0</p>
-            </div>
-          </div>
-          <div className="details__wrapper">
-            <div className="details__text">
-              <p className="details__key">Faction:</p>
-              <p className="details__value">Lizardmen</p>
-            </div>
-            <div className="details__text">
-              <p className="details__key">Team Value:</p>
-              <p className="details__value">990</p>
-            </div>
-          </div>
-          <div className="details__img"></div>
-          {/* <img src=if (img file) else (default img) alt="" className="details__img" /> */}
-        </div>
-      </section>
+      {teamData && (
+        <TeamDetailsCard
+          name={teamData.name}
+          points={teamData.points}
+          faction={teamData.faction}
+          teamValue={teamData.team_value}
+        />
+      )}
     </div>
   );
 }

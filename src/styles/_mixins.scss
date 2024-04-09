@@ -23,8 +23,10 @@
   background: linear-gradient(
     135deg,
     $accent-secondary 15%,
+    $text-secondary 60%,
     $accent-primary 85%
   );
+  border: 3px solid $alt;
 }
 
 @mixin logo-text {
