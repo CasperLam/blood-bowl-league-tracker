@@ -14,7 +14,7 @@ export default function MyLeaguesPage() {
   const getLeagues = async () => {
     try {
       const { data } = await axios.get(`${apiURL}/api/leagues/${user_id}`);
-      setAllLeagues(data);
+      setAllLeagues(data.reverse());
     } catch (error) {
       console.log(error);
     }
