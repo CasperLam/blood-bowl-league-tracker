@@ -1,11 +1,12 @@
 import Subheader from "../../components/subheader/subheader";
-import "./leagueTable.scss";
+import "./leagueTablePage.scss";
 
-export default function LeagueTable() {
+export default function LeagueTablePage() {
   return (
     <div className="leagueTable">
       <Subheader
         titleText="Lustrian Superleague"
+        isButton={true}
         buttonText="+ Add Team"
         buttonFunction=""
       />

@@ -2,17 +2,19 @@ import React from "react";
 import "./app.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header/header";
-import MyLeagues from "./pages/myLeagues/myLeagues";
+import MyLeaguesPage from "./pages/myLeaguesPage/myLeaguesPage";
 import Footer from "./components/footer/footer";
-import LeagueTable from "./pages/leagueTable/leagueTable";
+import LeagueTablePage from "./pages/leagueTablePage/leagueTablePage";
+import TeamDetailsPage from "./pages/teamDetailsPage/teamDetailsPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<MyLeagues />} />
-        <Route path="/league-table" element={<LeagueTable />} />
+        <Route path="/" element={<MyLeaguesPage />} />
+        <Route path="/league-table" element={<LeagueTablePage />} />
+        <Route path="/team-details" element={<TeamDetailsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
