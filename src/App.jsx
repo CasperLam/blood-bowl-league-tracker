@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MyLeaguesPage />} />
-        <Route path="/league-table" element={<LeagueTablePage />} />
+        <Route path="/league-table/:league_id" element={<LeagueTablePage />} />
         <Route path="/team-details" element={<TeamDetailsPage />} />
       </Routes>
       <Footer />

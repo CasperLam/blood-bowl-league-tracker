@@ -3,6 +3,7 @@ import delete_icon from "../../assets/icons/delete_icon.svg";
 import "./leagueCard.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function LeagueCard({ id, name, date }) {
   const apiURL = `http://localhost:5050`;
@@ -26,7 +27,7 @@ export default function LeagueCard({ id, name, date }) {
   }, []);
 
   return (
-    <article className="leagues__card">
+    <Link className="leagues__card" to={`/league-table/${id}`}>
       <h3 className="leagues__name">{name}</h3>
       <div className="leagues__buttons">
         <img src={edit_icon} alt="edit icon" className="leagues__icon" />
@@ -39,6 +40,6 @@ export default function LeagueCard({ id, name, date }) {
         </p>
         <p className="leagues_teams">Teams: {teamCount}</p>
       </div>
-    </article>
+    </Link>
   );
 }
