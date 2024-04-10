@@ -6,7 +6,7 @@ import {
 import { useMemo } from "react";
 import "./table.scss";
 
-export default function BasicTable({ leagueData }) {
+export default function Table({ leagueData }) {
   const data = useMemo(() => leagueData, [leagueData]);
 
   const columns = [

@@ -1,6 +1,7 @@
-import React from "react";
 import "./app.scss";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ReactDOM from "react-dom";
 import Header from "./components/header/header";
 import MyLeaguesPage from "./pages/myLeaguesPage/myLeaguesPage";
 import Footer from "./components/footer/footer";

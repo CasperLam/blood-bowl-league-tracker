@@ -22,7 +22,11 @@ export default function Subheader({
           />
           <h2 className="subheader__text">{titleText}</h2>
         </div>
-        {isButton && <button className="subheader__btn">{buttonText}</button>}
+        {isButton && (
+          <button className="subheader__btn" onClick={buttonFunction}>
+            {buttonText}
+          </button>
+        )}
       </section>
     </>
   );

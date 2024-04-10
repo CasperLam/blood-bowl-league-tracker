@@ -1,0 +1,27 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.modal {
+  @include flex(row, center, center);
+  background-color: #00000066;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+
+  &__container {
+    @include container;
+    background-color: $bg-primary;
+    width: 90%;
+    border-radius: 1rem;
+    border: 4px solid $alt;
+    box-shadow: 0 0 5px 5px $accent-primary;
+
+    @include tablet-and-desktop {
+      width: 50%;
+    }
+  }
+
+  &__close {
+    @include button-secondary;
+  }
+}
