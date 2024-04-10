@@ -43,12 +43,12 @@
   width: 100%;
   border-radius: 2rem;
   border: none;
+  border: 3px solid $alt;
 
   @include tablet-and-desktop {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     width: fit-content;
-    border: 3px solid $accent-primary;
   }
 
   &:hover {

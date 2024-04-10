@@ -8,7 +8,7 @@ import "./table.scss";
 
 export default function Table({ leagueData }) {
   const data = useMemo(() => leagueData, [leagueData]);
-
+ 
   const columns = [
     {
       header: "Team Name",
