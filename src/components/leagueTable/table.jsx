@@ -1,35 +1,38 @@
 import {
-  useReactTable,
+  createColumnHelper,
   flexRender,
   getCoreRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 import { useMemo } from "react";
 import "./table.scss";
 
-export default function BasicTable({ leagueData }) {
+export default function Table({ leagueData }) {
   const data = useMemo(() => leagueData, [leagueData]);
 
+  const columnHelper = createColumnHelper();
+
   const columns = [
-    {
-      header: "Team Name",
-      accessor: "name",
-    },
-    {
-      header: "Faction",
-      accessor: "faction",
-    },
-    {
-      header: "Head Coach",
-      accessor: "head_coach",
-    },
-    {
-      header: "Points",
-      accessor: "points",
-    },
-    {
-      header: "Team Value",
-      accessor: "team_value",
-    },
+    columnHelper.accessor("name", {
+      cell: (info) => info.getValue(),
+      header: () => "Team Name",
+    }),
+    columnHelper.accessor("faction", {
+      cell: (info) => info.getValue(),
+      header: () => "Faction",
+    }),
+    columnHelper.accessor("head_coach", {
+      cell: (info) => info.getValue(),
+      header: () => "Head Coach",
+    }),
+    columnHelper.accessor("points", {
+      cell: (info) => info.getValue(),
+      header: () => "Points",
+    }),
+    columnHelper.accessor("team_value", {
+      cell: (info) => info.getValue(),
+      header: () => "Team Value",
+    }),
   ];
 
   const table = useReactTable({
