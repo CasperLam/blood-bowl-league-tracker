@@ -1,15 +1,14 @@
 import Table from "../../components/leagueTable/table";
 import Subheader from "../../components/subheader/subheader";
 import { useParams, useLocation } from "react-router-dom";
-import "./leagueTablePage.scss";
 import { useEffect, useState } from "react";
+import "./leagueTablePage.scss";
 import axios from "axios";
-import BasicTable from "../../components/basictable/basictable";
 
 export default function LeagueTablePage() {
   const apiURL = process.env.REACT_APP_API_URL;
-
   const { user_id, league_id } = useParams();
+
   const location = useLocation();
   const { name } = location.state;
 
@@ -30,29 +29,6 @@ export default function LeagueTablePage() {
     getLeagueData();
   }, []);
 
-  const columns = [
-    {
-      Header: `Team Name`,
-      accessor: `name`,
-    },
-    {
-      Header: `Faction`,
-      accessor: `faction`,
-    },
-    {
-      Header: `Head Coach`,
-      accessor: `head_coach`,
-    },
-    {
-      Header: `Points`,
-      accessor: `points`,
-    },
-    {
-      Header: `Team Value`,
-      accessor: `team_value`,
-    },
-  ];
-
   return (
     <div className="leagueTable">
       <Subheader
@@ -61,7 +37,7 @@ export default function LeagueTablePage() {
         buttonText="+ Add Team"
         buttonFunction=""
       />
-      {leagueData && <BasicTable columns={columns} data={leagueData} />}
+      {leagueData && <Table leagueData={leagueData} />}
       {/* <table className="table">
         <thead className="table__header">
           <tr>
