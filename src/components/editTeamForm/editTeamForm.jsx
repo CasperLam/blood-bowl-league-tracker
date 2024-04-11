@@ -3,8 +3,8 @@ import axios from "axios";
 import "./editTeamForm.scss";
 
 export default function EditTeamForm({
-  formData,
-  changeHandler,
+  teamFormData,
+  teamChangeHandler,
   closeFn,
   renderFn,
 }) {
@@ -14,11 +14,12 @@ export default function EditTeamForm({
     let errors = {};
     let isValid = true;
 
-    if (!formData.head_coach) errors.head_coach = "Head coach name is required";
-    if (!formData.faction) errors.faction = "Faction is required";
-    if (!formData.name) errors.name = "Name is required";
-    if (!formData.team_value) errors.team_value = "Team value is required";
-    if (!formData.points && formData.points != 0)
+    if (!teamFormData.head_coach)
+      errors.head_coach = "Head coach name is required";
+    if (!teamFormData.faction) errors.faction = "Faction is required";
+    if (!teamFormData.name) errors.name = "Name is required";
+    if (!teamFormData.team_value) errors.team_value = "Team value is required";
+    if (!teamFormData.points && teamFormData.points != 0)
       errors.points = "Points should not be empty";
 
     isValid = Object.keys(errors).length === 0;
@@ -38,9 +39,9 @@ export default function EditTeamForm({
     if (!validateForm()) return;
 
     try {
-      const payload = { ...formData };
+      const payload = { ...teamFormData };
       await axios.put(
-        `${apiURL}/api/teams/${formData.user_id}/${formData.league_id}/${formData.team_id}`,
+        `${apiURL}/api/teams/${teamFormData.user_id}/${teamFormData.league_id}/${teamFormData.team_id}`,
         payload
       );
       renderFn();
@@ -61,12 +62,12 @@ export default function EditTeamForm({
               id="head_coach"
               name="head_coach"
               className={`edit-team-form__input ${
-                formErrors.head_coach && !formData.head_coach
+                formErrors.head_coach && !teamFormData.head_coach
                   ? "edit-team-form__input--error"
                   : ""
               }`}
-              value={formData.head_coach}
-              onChange={changeHandler}
+              value={teamFormData.head_coach}
+              onChange={teamChangeHandler}
               placeholder="Bob Bifford"
             />
           </div>
@@ -79,12 +80,12 @@ export default function EditTeamForm({
               id="name"
               name="name"
               className={`edit-team-form__input ${
-                formErrors.name && !formData.name
+                formErrors.name && !teamFormData.name
                   ? "edit-team-form__input--error"
                   : ""
               }`}
-              value={formData.name}
-              onChange={changeHandler}
+              value={teamFormData.name}
+              onChange={teamChangeHandler}
               placeholder="A Biffing Good Time"
             />
           </div>
@@ -97,12 +98,12 @@ export default function EditTeamForm({
               id="points"
               name="points"
               className={`edit-team-form__input ${
-                formErrors.points && !formData.points
+                formErrors.points && !teamFormData.points
                   ? "edit-team-form__input--error"
                   : ""
               }`}
-              value={formData.points}
-              onChange={changeHandler}
+              value={teamFormData.points}
+              onChange={teamChangeHandler}
               placeholder="Points"
             />
           </div>
@@ -117,12 +118,12 @@ export default function EditTeamForm({
               id="faction"
               name="faction"
               className={`edit-team-form__input ${
-                formErrors.faction && !formData.faction
+                formErrors.faction && !teamFormData.faction
                   ? "edit-team-form__input--error"
                   : ""
               }`}
-              value={formData.faction}
-              onChange={changeHandler}
+              value={teamFormData.faction}
+              onChange={teamChangeHandler}
             />
           </div>
           <div className="edit-team-form__wrapper">
@@ -134,12 +135,12 @@ export default function EditTeamForm({
               id="team_value"
               name="team_value"
               className={`edit-team-form__input ${
-                formErrors.team_value && !formData.team_value
+                formErrors.team_value && !teamFormData.team_value
                   ? "edit-team-form__input--error"
                   : ""
               }`}
-              value={formData.team_value}
-              onChange={changeHandler}
+              value={teamFormData.team_value}
+              onChange={teamChangeHandler}
               placeholder="1000k"
             />
           </div>

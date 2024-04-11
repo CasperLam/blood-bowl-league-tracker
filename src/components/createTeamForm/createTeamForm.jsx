@@ -3,8 +3,8 @@ import axios from "axios";
 import "./createTeamForm.scss";
 
 export default function CreateTeamForm({
-  formData,
-  changeHandler,
+  teamFormData,
+  teamChangeHandler,
   closeFn,
   renderFn,
 }) {
@@ -14,10 +14,11 @@ export default function CreateTeamForm({
     let errors = {};
     let isValid = true;
 
-    if (!formData.head_coach) errors.head_coach = "Head coach name is required";
-    if (!formData.faction) errors.faction = "Faction is required";
-    if (!formData.name) errors.name = "Name is required";
-    if (!formData.team_value) errors.team_value = "Team value is required";
+    if (!teamFormData.head_coach)
+      errors.head_coach = "Head coach name is required";
+    if (!teamFormData.faction) errors.faction = "Faction is required";
+    if (!teamFormData.name) errors.name = "Name is required";
+    if (!teamFormData.team_value) errors.team_value = "Team value is required";
 
     isValid = Object.keys(errors).length === 0;
 
@@ -36,7 +37,7 @@ export default function CreateTeamForm({
     if (!validateForm()) return;
 
     try {
-      await axios.post(`${apiURL}/api/teams`, formData);
+      await axios.post(`${apiURL}/api/teams`, teamFormData);
       renderFn();
       closeFn();
     } catch (error) {
@@ -58,12 +59,12 @@ export default function CreateTeamForm({
               id="head_coach"
               name="head_coach"
               className={`create-team-form__input ${
-                formErrors.head_coach && !formData.head_coach
+                formErrors.head_coach && !teamFormData.head_coach
                   ? "create-team-form__input--error"
                   : ""
               }`}
-              value={formData.head_coach}
-              onChange={changeHandler}
+              value={teamFormData.head_coach}
+              onChange={teamChangeHandler}
               placeholder="Bob Bifford"
             />
           </div>
@@ -76,12 +77,12 @@ export default function CreateTeamForm({
               id="name"
               name="name"
               className={`create-team-form__input ${
-                formErrors.name && !formData.name
+                formErrors.name && !teamFormData.name
                   ? "create-team-form__input--error"
                   : ""
               }`}
-              value={formData.name}
-              onChange={changeHandler}
+              value={teamFormData.name}
+              onChange={teamChangeHandler}
               placeholder="A Biffing Good Time"
             />
           </div>
@@ -96,12 +97,12 @@ export default function CreateTeamForm({
               id="faction"
               name="faction"
               className={`create-team-form__input ${
-                formErrors.faction && !formData.faction
+                formErrors.faction && !teamFormData.faction
                   ? "create-team-form__input--error"
                   : ""
               }`}
-              value={formData.faction}
-              onChange={changeHandler}
+              value={teamFormData.faction}
+              onChange={teamChangeHandler}
             />
           </div>
           <div className="create-team-form__wrapper">
@@ -113,12 +114,12 @@ export default function CreateTeamForm({
               id="team_value"
               name="team_value"
               className={`create-team-form__input ${
-                formErrors.team_value && !formData.team_value
+                formErrors.team_value && !teamFormData.team_value
                   ? "create-team-form__input--error"
                   : ""
               }`}
-              value={formData.team_value}
-              onChange={changeHandler}
+              value={teamFormData.team_value}
+              onChange={teamChangeHandler}
               placeholder="1000k"
             />
           </div>

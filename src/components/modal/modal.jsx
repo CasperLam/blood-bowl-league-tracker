@@ -4,11 +4,12 @@ import CreateTeamForm from "../createTeamForm/createTeamForm";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import EditTeamForm from "../editTeamForm/editTeamForm";
+import CreateLeagueForm from "../createLeagueForm/createLeagueForm";
 
 export default function Modal({ closeFn, name, type, renderFn, currentData }) {
   const apiURL = process.env.REACT_APP_API_URL;
   const { user_id, league_id, team_id } = useParams();
-  const [formData, setFormData] = useState(
+  const [teamFormData, setTeamFormData] = useState(
     currentData
       ? {
           user_id: user_id,
@@ -32,10 +33,32 @@ export default function Modal({ closeFn, name, type, renderFn, currentData }) {
         }
   );
 
-  const changeHandler = (event) => {
+  const teamChangeHandler = (event) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
+    setTeamFormData((prevteamFormData) => ({
+      ...prevteamFormData,
+      [name]: value,
+    }));
+  };
+
+  const [leagueFormData, setleagueFormData] = useState(
+    currentData
+      ? {
+          user_id: user_id,
+          league_id: league_id,
+          name: currentData.name,
+        }
+      : {
+          user_id: user_id,
+          league_id: league_id,
+          name: "",
+        }
+  );
+
+  const leagueChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setleagueFormData((prevleagueFormData) => ({
+      ...prevleagueFormData,
       [name]: value,
     }));
   };
@@ -52,13 +75,26 @@ export default function Modal({ closeFn, name, type, renderFn, currentData }) {
   return (
     <div className="modal" onClick={closeFn}>
       <div className="modal__container" onClick={(e) => e.stopPropagation()}>
+        {type === "addLeague" && (
+          <>
+            <h2 className="modal__title">Add a League</h2>
+            <p className="modal__description">Add your league details here:</p>
+            <CreateLeagueForm
+              leagueFormData={leagueFormData}
+              leagueChangeHandler={leagueChangeHandler}
+              closeFn={closeFn}
+              renderFn={renderFn}
+            />
+          </>
+        )}
+
         {type === "addTeam" && (
           <>
             <h2 className="modal__title">Add a Team</h2>
             <p className="modal__description">Add your team details here:</p>
             <CreateTeamForm
-              formData={formData}
-              changeHandler={changeHandler}
+              teamFormData={teamFormData}
+              teamChangeHandler={teamChangeHandler}
               closeFn={closeFn}
               renderFn={renderFn}
             />
@@ -70,8 +106,8 @@ export default function Modal({ closeFn, name, type, renderFn, currentData }) {
             <h2 className="modal__title">{`Edit ${name}`}</h2>
             <p className="modal__description">Edit your team's details here:</p>
             <EditTeamForm
-              formData={formData}
-              changeHandler={changeHandler}
+              teamFormData={teamFormData}
+              teamChangeHandler={teamChangeHandler}
               closeFn={closeFn}
               renderFn={renderFn}
             />

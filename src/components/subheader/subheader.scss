@@ -2,7 +2,7 @@
 @use "../../styles/mixins" as *;
 
 .subheader {
-  @include flex(column);
+  @include flex(column, center, start);
   gap: 1rem;
   text-align: center;
   padding-bottom: 1rem;
