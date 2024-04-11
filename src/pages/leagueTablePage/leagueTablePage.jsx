@@ -48,7 +48,13 @@ export default function LeagueTablePage() {
       {leagueData && <Table leagueData={leagueData} />}
       {showAddTeam &&
         createPortal(
-          <Modal closeFn={toggleAddTeamModal} type="add" />,
+          <Modal
+            closeFn={toggleAddTeamModal}
+            type="add"
+            user_id={user_id}
+            league_id={league_id}
+            renderFn={getLeagueData}
+          />,
           document.getElementById(`root`)
         )}
     </div>

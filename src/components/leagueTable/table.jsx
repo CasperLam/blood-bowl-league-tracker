@@ -26,11 +26,15 @@ export default function Table({ leagueData }) {
       header: () => "Head Coach",
     }),
     columnHelper.accessor("points", {
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <div style={{ textAlign: "right" }}>{info.getValue()}</div>
+      ),
       header: () => "Points",
     }),
     columnHelper.accessor("team_value", {
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <div style={{ textAlign: "right" }}>{info.getValue()}</div>
+      ),
       header: () => "Team Value",
     }),
   ];
@@ -43,14 +47,14 @@ export default function Table({ leagueData }) {
 
   return (
     <div>
-      <table>
-        <thead>
+      <table className="table">
+        <thead className="table__head">
           {table.getHeaderGroups().map((headerGroup) => {
             return (
-              <tr key={headerGroup.id}>
+              <tr className="table__head-row" key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th key={header.id}>
+                    <th className="table__head-text" key={header.id}>
                       {flexRender(
                         header.column.columnDef.header,
                         header.getContext()
@@ -62,11 +66,11 @@ export default function Table({ leagueData }) {
             );
           })}
         </thead>
-        <tbody>
+        <tbody className="table__body">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr className="table__body-row" key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
+                <td className="table__body-text" key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

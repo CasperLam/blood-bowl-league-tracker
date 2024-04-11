@@ -1,33 +1,41 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-table {
-  // font-family: Arial, Helvetica, sans-serif;
+.table {
   border-collapse: collapse;
   width: 100%;
-}
 
-table td,
-table th {
-  border: 1px solid $alt;
-  padding: 8px;
-}
+  &__head {
+    background-color: $alt;
 
-table tr:nth-child(even) {
-  background-color: $bg-primary;
-}
+    &-text {
+      border: 1px solid $alt;
+      padding: 0.25rem;
+      color: $text-secondary;
 
-table tr:hover {
-  background-color: $bg-secondary;
-}
+      @include tablet-and-desktop {
+        text-transform: initial;
+      }
+    }
+  }
 
-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  color: $text-secondary;
-}
+  &__body {
+    &-row {
+      &:nth-child(odd) {
+        background-color: $bg-primary-faint;
+      }
+      &:nth-child(even) {
+        background-color: $bg-primary;
+      }
 
-table thead {
-  background-color: $alt;
+      &:hover {
+        background-color: $bg-secondary;
+      }
+    }
+
+    &-text {
+      border: 1px solid $alt;
+      padding: 0 0.5rem;
+    }
+  }
 }

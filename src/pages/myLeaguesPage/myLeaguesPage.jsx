@@ -30,7 +30,7 @@ export default function MyLeaguesPage() {
         titleText="My Leagues"
         isButton={true}
         buttonText="+ Add League"
-        buttonFunction=""
+        buttonFunction={console.log(`nothing`)}
       />
       <section className="leagues">
         {allLeagues &&
