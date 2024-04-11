@@ -23,4 +23,23 @@
       width: 60%;
     }
   }
+
+  &__buttons {
+    @include flex(column, space-around);
+    gap: 1rem;
+    width: 100%;
+
+    @include tablet-and-desktop {
+      flex-direction: row;
+      margin-top: 1rem;
+    }
+  }
+
+  &__close {
+    @include button-secondary;
+  }
+
+  &__action {
+    @include button-primary;
+  }
 }

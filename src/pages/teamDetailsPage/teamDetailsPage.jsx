@@ -1,14 +1,15 @@
 import Subheader from "../../components/subheader/subheader";
+import TeamDetailsCard from "../../components/teamDetailsCard/teamDetailsCard";
 import "./teamDetailsPage.scss";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import TeamDetailsCard from "../../components/teamDetailsCard/teamDetailsCard";
+import { createPortal } from "react-dom";
+import Modal from "../../components/modal/modal";
 
 export default function TeamDetailsPage() {
   const apiURL = process.env.REACT_APP_API_URL;
-  const user_id = 1;
-  const league_id = 1;
-  const team_id = 1;
+  const { user_id, league_id, team_id } = useParams();
 
   const [teamData, setTeamData] = useState(null);
 
@@ -27,6 +28,12 @@ export default function TeamDetailsPage() {
     getTeamData();
   }, []);
 
+  const [showDeleteTeam, setShowDeleteTeam] = useState(false);
+
+  const toggleDeleteTeamModal = () => {
+    setShowDeleteTeam(!showDeleteTeam);
+  };
+
   return (
     <div className="team-details">
       <Subheader
@@ -41,8 +48,18 @@ export default function TeamDetailsPage() {
           points={teamData.points}
           faction={teamData.faction}
           teamValue={teamData.team_value}
+          openDelete={toggleDeleteTeamModal}
         />
       )}
+      {showDeleteTeam &&
+        createPortal(
+          <Modal
+            closeFn={toggleDeleteTeamModal}
+            type="deleteTeam"
+            name={teamData.name}
+          />,
+          document.getElementById(`root`)
+        )}
     </div>
   );
 }

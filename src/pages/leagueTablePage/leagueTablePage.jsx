@@ -11,9 +11,6 @@ export default function LeagueTablePage() {
   const apiURL = process.env.REACT_APP_API_URL;
   const { user_id, league_id } = useParams();
 
-  const location = useLocation();
-  const { name } = location.state;
-
   const [leagueData, setLeagueData] = useState(null);
 
   const getLeagueData = async () => {
@@ -39,26 +36,24 @@ export default function LeagueTablePage() {
 
   return (
     <div className="leagueTable">
-      <Subheader
-        titleText={name}
-        isButton={true}
-        buttonText="+ Add Team"
-        buttonFunction={toggleAddTeamModal}
-      />
       {leagueData && (
-        <Table
-          leagueData={leagueData}
-          user_id={user_id}
-          league_id={league_id}
+        <Subheader
+          titleText={
+            leagueData[0]
+              ? leagueData[0].league_name
+              : "You need to add your first team"
+          }
+          isButton={true}
+          buttonText="+ Add Team"
+          buttonFunction={toggleAddTeamModal}
         />
       )}
+      {leagueData && <Table leagueData={leagueData} />}
       {showAddTeam &&
         createPortal(
           <Modal
             closeFn={toggleAddTeamModal}
-            type="add"
-            user_id={user_id}
-            league_id={league_id}
+            type="addTeam"
             renderFn={getLeagueData}
           />,
           document.getElementById(`root`)
