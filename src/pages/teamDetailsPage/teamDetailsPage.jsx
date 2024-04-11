@@ -34,14 +34,17 @@ export default function TeamDetailsPage() {
     setShowDeleteTeam(!showDeleteTeam);
   };
 
+  const [showEditTeam, setShowEditTeam] = useState(false);
+
+  const toggleEditTeamModal = () => {
+    setShowEditTeam(!showEditTeam);
+  };
+
   return (
     <div className="team-details">
-      <Subheader
-        titleText="Kroq-Gar Scalecaller"
-        isButton={false}
-        buttonText="+ Add Team"
-        buttonFunction=""
-      />
+      {teamData && (
+        <Subheader titleText={teamData.head_coach} isButton={false} />
+      )}
       {teamData && (
         <TeamDetailsCard
           name={teamData.name}
@@ -49,8 +52,20 @@ export default function TeamDetailsPage() {
           faction={teamData.faction}
           teamValue={teamData.team_value}
           openDelete={toggleDeleteTeamModal}
+          openEdit={toggleEditTeamModal}
         />
       )}
+      {showEditTeam &&
+        createPortal(
+          <Modal
+            closeFn={toggleEditTeamModal}
+            type="editTeam"
+            name={teamData.name}
+            renderFn={getTeamData}
+            currentData={teamData}
+          />,
+          document.getElementById(`root`)
+        )}
       {showDeleteTeam &&
         createPortal(
           <Modal

@@ -8,13 +8,19 @@ export default function TeamDetailsCard({
   faction,
   teamValue,
   openDelete,
+  openEdit,
 }) {
   return (
     <section className="details">
       <header className="details__header">
         <h3 className="details__title">Team Info</h3>
         <div className="details__buttons">
-          <img src={edit_icon} alt="edit icon" className="details__icon" />
+          <img
+            src={edit_icon}
+            alt="edit icon"
+            className="details__icon"
+            onClick={openEdit}
+          />
           <img
             src={delete_icon}
             alt="delete icon"

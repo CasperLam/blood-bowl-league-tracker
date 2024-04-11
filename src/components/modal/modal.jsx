@@ -3,19 +3,34 @@ import "./modal.scss";
 import CreateTeamForm from "../createTeamForm/createTeamForm";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import EditTeamForm from "../editTeamForm/editTeamForm";
 
-export default function Modal({ closeFn, name, type, renderFn }) {
+export default function Modal({ closeFn, name, type, renderFn, currentData }) {
   const apiURL = process.env.REACT_APP_API_URL;
   const { user_id, league_id, team_id } = useParams();
-  const [formData, setFormData] = useState({
-    user_id: user_id,
-    league_id: league_id,
-    team_id: team_id,
-    head_coach: "",
-    name: "",
-    faction: "",
-    team_value: "",
-  });
+  const [formData, setFormData] = useState(
+    currentData
+      ? {
+          user_id: user_id,
+          league_id: league_id,
+          team_id: team_id,
+          head_coach: currentData.head_coach,
+          name: currentData.name,
+          faction: currentData.faction,
+          team_value: currentData.team_value,
+          points: currentData.points,
+        }
+      : {
+          user_id: user_id,
+          league_id: league_id,
+          team_id: team_id,
+          head_coach: "",
+          name: "",
+          faction: "",
+          team_value: "",
+          points: "0",
+        }
+  );
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -50,9 +65,18 @@ export default function Modal({ closeFn, name, type, renderFn }) {
           </>
         )}
 
-        {/* {type === "edit" && (
-          return <></>
-        )} */}
+        {type === "editTeam" && (
+          <>
+            <h2 className="modal__title">{`Edit ${name}`}</h2>
+            <p className="modal__description">Edit your team's details here:</p>
+            <EditTeamForm
+              formData={formData}
+              changeHandler={changeHandler}
+              closeFn={closeFn}
+              renderFn={renderFn}
+            />
+          </>
+        )}
 
         {type === "deleteTeam" && (
           <>
