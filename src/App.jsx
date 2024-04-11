@@ -18,7 +18,10 @@ function App() {
           path="/league-table/:user_id/:league_id"
           element={<LeagueTablePage />}
         />
-        <Route path="/team-details" element={<TeamDetailsPage />} />
+        <Route
+          path="/team-details/:user_id/:league_id/:team_id"
+          element={<TeamDetailsPage />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>

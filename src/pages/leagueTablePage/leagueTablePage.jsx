@@ -45,7 +45,13 @@ export default function LeagueTablePage() {
         buttonText="+ Add Team"
         buttonFunction={toggleAddTeamModal}
       />
-      {leagueData && <Table leagueData={leagueData} />}
+      {leagueData && (
+        <Table
+          leagueData={leagueData}
+          user_id={user_id}
+          league_id={league_id}
+        />
+      )}
       {showAddTeam &&
         createPortal(
           <Modal

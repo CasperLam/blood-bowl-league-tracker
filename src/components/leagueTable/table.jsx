@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-table";
 import { useMemo } from "react";
 import "./table.scss";
+import { Link } from "react-router-dom";
 
 export default function Table({ leagueData }) {
   const data = useMemo(() => leagueData, [leagueData]);
@@ -14,7 +15,16 @@ export default function Table({ leagueData }) {
 
   const columns = [
     columnHelper.accessor("name", {
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <Link
+          to={{
+            pathname: `/team-details/${info.row.original.user_id}/${info.row.original.league_id}/${info.row.original.id}`,
+          }}
+          className="table__body-link"
+        >
+          {info.getValue()}
+        </Link>
+      ),
       header: () => "Team Name",
     }),
     columnHelper.accessor("faction", {

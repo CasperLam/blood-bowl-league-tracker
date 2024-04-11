@@ -33,6 +33,15 @@
       }
     }
 
+    &-link {
+      color: $alt;
+      font-weight: 500;
+
+      &:hover {
+        color: $text-secondary;
+      }
+    }
+
     &-text {
       border: 1px solid $alt;
       padding: 0 0.5rem;
