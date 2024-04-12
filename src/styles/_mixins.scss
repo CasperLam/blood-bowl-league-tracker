@@ -55,6 +55,7 @@
   &:hover {
     opacity: 0.75;
     border-color: $accent-secondary;
+    cursor: pointer;
   }
 }
 
@@ -77,6 +78,7 @@
   &:hover {
     opacity: 0.75;
     border-color: $accent-primary;
+    cursor: pointer;
   }
 }
 
