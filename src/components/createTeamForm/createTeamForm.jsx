@@ -110,7 +110,7 @@ export default function CreateTeamForm({
               Team Value:
             </label>
             <input
-              type="text"
+              type="number"
               id="team_value"
               name="team_value"
               className={`create-team-form__input ${
@@ -120,7 +120,7 @@ export default function CreateTeamForm({
               }`}
               value={teamFormData.team_value}
               onChange={teamChangeHandler}
-              placeholder="1000k"
+              placeholder="Numbers only. e.g. 1000"
             />
           </div>
         </div>

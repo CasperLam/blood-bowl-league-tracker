@@ -39,12 +39,13 @@ export default function EditTeamForm({
     if (!validateForm()) return;
 
     try {
-      const payload = { ...teamFormData };
+      console.log(teamFormData);
       await axios.put(
         `${apiURL}/api/teams/${teamFormData.user_id}/${teamFormData.league_id}/${teamFormData.team_id}`,
-        payload
+        teamFormData
       );
       renderFn();
+      closeFn();
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +95,7 @@ export default function EditTeamForm({
               Points:
             </label>
             <input
-              type="text"
+              type="number"
               id="points"
               name="points"
               className={`edit-team-form__input ${
@@ -104,7 +105,7 @@ export default function EditTeamForm({
               }`}
               value={teamFormData.points}
               onChange={teamChangeHandler}
-              placeholder="Points"
+              placeholder="Numbers only"
             />
           </div>
         </div>
@@ -131,7 +132,7 @@ export default function EditTeamForm({
               Team Value:
             </label>
             <input
-              type="text"
+              type="number"
               id="team_value"
               name="team_value"
               className={`edit-team-form__input ${
@@ -141,7 +142,7 @@ export default function EditTeamForm({
               }`}
               value={teamFormData.team_value}
               onChange={teamChangeHandler}
-              placeholder="1000k"
+              placeholder="Numbers only"
             />
           </div>
         </div>
