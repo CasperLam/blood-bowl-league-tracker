@@ -4,8 +4,8 @@
 .leagues {
   &__card {
     @include linear-gradient;
-    padding: 1rem;
     position: relative;
+    padding: 1rem;
     width: 100%;
     border-radius: 1rem;
 
@@ -15,33 +15,30 @@
     }
 
     &:hover {
-      box-shadow: 0 0 5px 5px $text-placeholder;
+      box-shadow: 0 0 5px 5px $alt;
     }
   }
 
+  &__header {
+    @include flex(row, space-between);
+    width: 100%;
+  }
+
   &__name {
-    position: absolute;
     background-color: $bg-transparent;
     box-shadow: 0 0 5px 5px $bg-transparent;
     border-radius: 1rem;
     padding: 0.25rem;
-    width: fit-content;
     max-width: 60%;
   }
 
   &__buttons {
     @include flex(column, space-between);
     height: 3.25rem;
-    position: absolute;
-    right: 1rem;
     background-color: $bg-transparent;
     box-shadow: 0 0 5px 5px $bg-transparent;
     border-radius: 1rem;
     padding: 0.25rem;
-
-    @include tablet-and-desktop {
-      right: 2rem;
-    }
   }
 
   &__icon {

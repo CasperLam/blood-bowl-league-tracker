@@ -5,9 +5,24 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { createPortal } from "react-dom";
+import Modal from "../modal/modal";
 
-export default function LeagueCard({ id, name, date }) {
+export default function LeagueCard({ id, name, date, renderFn, League }) {
   const apiURL = process.env.REACT_APP_API_URL;
+
+  const [showEditLeague, setShowEditLeague] = useState(false);
+
+  const toggleEditLeagueModal = () => {
+    setShowEditLeague(!showEditLeague);
+  };
+
+  const [showDeleteLeague, setShowDeleteLeague] = useState(false);
+
+  const toggleDeleteLeagueModal = () => {
+    setShowDeleteLeague(!showDeleteLeague);
+  };
+
   const { user_id } = useParams();
 
   const [teamCount, setTeamCount] = useState(0);
@@ -28,23 +43,65 @@ export default function LeagueCard({ id, name, date }) {
   }, []);
 
   return (
-    <Link
-      className="leagues__card"
-      to={`/league-table/${user_id}/${id}`}
-      state={{ name: name }}
-    >
-      <h3 className="leagues__name">{name}</h3>
-      <div className="leagues__buttons">
-        <img src={edit_icon} alt="edit icon" className="leagues__icon" />
-        <img src={delete_icon} alt="delete icon" className="leagues__icon" />
-      </div>
-      <div className="leagues__img"></div>
-      <div className="leagues__container">
-        <p className="leagues_date">
-          Created: {new Date(date).toLocaleDateString()}
-        </p>
-        <p className="leagues_teams">Teams: {teamCount}</p>
-      </div>
-    </Link>
+    <>
+      <Link
+        className="leagues__card"
+        to={`/league-table/${user_id}/${id}`}
+        state={{ name: name }}
+      >
+        <div className="leagues__header">
+          <h3 className="leagues__name">{name}</h3>
+          <div
+            className="leagues__buttons"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <img
+              src={edit_icon}
+              alt="edit icon"
+              className="leagues__icon"
+              onClick={toggleEditLeagueModal}
+            />
+            <img
+              src={delete_icon}
+              alt="delete icon"
+              className="leagues__icon"
+              onClick={toggleDeleteLeagueModal}
+            />
+          </div>
+        </div>
+        <div className="leagues__img"></div>
+        <div className="leagues__container">
+          <p className="leagues_date">
+            Created: {new Date(date).toLocaleDateString()}
+          </p>
+          <p className="leagues_teams">Teams: {teamCount}</p>
+        </div>
+      </Link>
+      {showEditLeague &&
+        createPortal(
+          <Modal
+            closeFn={toggleEditLeagueModal}
+            type="editLeague"
+            name={name}
+            renderFn={renderFn}
+            currentData={League}
+            leagueCardId={id}
+          />,
+          document.getElementById(`root`)
+        )}
+      {showDeleteLeague &&
+        createPortal(
+          <Modal
+            closeFn={toggleDeleteLeagueModal}
+            type="deleteLeague"
+            name={name}
+            renderFn={renderFn}
+            leagueCardId={id}
+          />,
+          document.getElementById(`root`)
+        )}
+    </>
   );
 }

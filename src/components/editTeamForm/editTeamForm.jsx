@@ -39,7 +39,6 @@ export default function EditTeamForm({
     if (!validateForm()) return;
 
     try {
-      console.log(teamFormData);
       await axios.put(
         `${apiURL}/api/teams/${teamFormData.user_id}/${teamFormData.league_id}/${teamFormData.team_id}`,
         teamFormData
@@ -48,6 +47,7 @@ export default function EditTeamForm({
       closeFn();
     } catch (error) {
       console.log(error);
+      alert(`Failed to edit team, please try again.`);
     }
   };
   return (

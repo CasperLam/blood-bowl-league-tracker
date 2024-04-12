@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./createLeagueForm.scss";
+import "./editLeagueForm.scss";
 
-export default function CreateLeagueForm({
+export default function EditLeagueForm({
   leagueFormData,
   leagueChangeHandler,
   closeFn,
   renderFn,
+  leagueCardId,
 }) {
   const [formErrors, setFormErrors] = useState({});
 
@@ -33,28 +34,31 @@ export default function CreateLeagueForm({
     if (!validateForm()) return;
 
     try {
-      await axios.post(`${apiURL}/api/leagues`, leagueFormData);
+      await axios.put(
+        `${apiURL}/api/leagues/${leagueFormData.user_id}/${leagueCardId}`,
+        leagueFormData
+      );
       renderFn();
       closeFn();
     } catch (error) {
       console.log(error);
-      alert(`Failed to add league, please try again.`);
+      alert(`Failed to edit league, please try again.`);
     }
   };
 
   return (
-    <form className="create-league-form" onSubmit={handleSubmit}>
-      <div className="create-league-form__wrapper">
-        <label htmlFor="name" className="create-league-form__label">
+    <form className="edit-league-form" onSubmit={handleSubmit}>
+      <div className="edit-league-form__wrapper">
+        <label htmlFor="name" className="edit-league-form__label">
           League Name:
         </label>
         <input
           type="text"
           id="name"
           name="name"
-          className={`create-league-form__input ${
+          className={`edit-league-form__input ${
             formErrors.name && !leagueFormData.name
-              ? "create-league-form__input--error"
+              ? "edit-league-form__input--error"
               : ""
           }`}
           value={leagueFormData.name}
@@ -63,13 +67,13 @@ export default function CreateLeagueForm({
         />
       </div>
       {formErrors.name && (
-        <p className="create-league-form__error">Please complete all fields</p>
+        <p className="edit-league-form__error">Please complete all fields</p>
       )}
-      <div className="create-league-form__buttons">
-        <button className="create-league-form__close" onClick={closeFn}>
+      <div className="edit-league-form__buttons">
+        <button className="edit-league-form__close" onClick={closeFn}>
           Close
         </button>
-        <button className="create-league-form__action" type="submit">
+        <button className="edit-league-form__action" type="submit">
           Add
         </button>
       </div>

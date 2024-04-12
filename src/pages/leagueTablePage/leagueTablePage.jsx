@@ -41,7 +41,7 @@ export default function LeagueTablePage() {
           titleText={
             leagueData[0]
               ? leagueData[0].league_name
-              : "You need to add your first team"
+              : "Time to add your first team"
           }
           isButton={true}
           buttonText="+ Add Team"

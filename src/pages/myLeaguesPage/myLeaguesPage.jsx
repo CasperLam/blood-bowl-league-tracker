@@ -35,7 +35,7 @@ export default function MyLeaguesPage() {
   return (
     <div className="myLeagues">
       <Subheader
-        titleText="My Leagues"
+        titleText={allLeagues ? "My Leagues" : "Time to add your first league"}
         isButton={true}
         buttonText="+ Add League"
         buttonFunction={toggleAddLeagueModal}
@@ -50,6 +50,8 @@ export default function MyLeaguesPage() {
                 id={league.id}
                 name={league.name}
                 date={league.create_at}
+                renderFn={getLeagues}
+                league={league}
               />
             );
           })}

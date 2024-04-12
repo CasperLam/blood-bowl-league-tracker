@@ -5,8 +5,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import EditTeamForm from "../editTeamForm/editTeamForm";
 import CreateLeagueForm from "../createLeagueForm/createLeagueForm";
+import EditLeagueForm from "../editLeagueForm/editLeagueForm";
 
-export default function Modal({ closeFn, name, type, renderFn, currentData }) {
+export default function Modal({
+  closeFn,
+  name,
+  type,
+  renderFn,
+  currentData,
+  leagueCardId,
+}) {
   const apiURL = process.env.REACT_APP_API_URL;
   const { user_id, league_id, team_id } = useParams();
   const [teamFormData, setTeamFormData] = useState(
@@ -72,6 +80,12 @@ export default function Modal({ closeFn, name, type, renderFn, currentData }) {
     nav(`/league-table/${user_id}/${league_id}`);
   };
 
+  const handleDeleteLeague = async (league_id) => {
+    await axios.delete(`${apiURL}/api/leagues/${user_id}/${league_id}`);
+    renderFn();
+    closeFn();
+  };
+
   return (
     <div className="modal" onClick={closeFn}>
       <div className="modal__container" onClick={(e) => e.stopPropagation()}>
@@ -85,6 +99,44 @@ export default function Modal({ closeFn, name, type, renderFn, currentData }) {
               closeFn={closeFn}
               renderFn={renderFn}
             />
+          </>
+        )}
+
+        {type === "editLeague" && (
+          <>
+            <h2 className="modal__title">{`Edit ${name}`}</h2>
+            <p className="modal__description">Edit your team's details here:</p>
+            <EditLeagueForm
+              leagueFormData={leagueFormData}
+              leagueChangeHandler={leagueChangeHandler}
+              closeFn={closeFn}
+              renderFn={renderFn}
+              leagueCardId={leagueCardId}
+            />
+          </>
+        )}
+
+        {type === "deleteLeague" && (
+          <>
+            <h2 className="modal__title">{`Delete ${name}`}</h2>
+            <p className="modal__description">
+              Deleting is <b>permanent!</b>
+              <br />
+              Are you sure you want to proceed?
+            </p>
+            <div className="modal__buttons">
+              <button className="modal__close" onClick={closeFn}>
+                Close
+              </button>
+              <button
+                className="modal__action"
+                onClick={() => {
+                  handleDeleteLeague(leagueCardId);
+                }}
+              >
+                Delete
+              </button>
+            </div>
           </>
         )}
 
