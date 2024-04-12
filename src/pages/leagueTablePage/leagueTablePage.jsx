@@ -1,6 +1,6 @@
 import Table from "../../components/leagueTable/table";
 import Subheader from "../../components/subheader/subheader";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import "./leagueTablePage.scss";
@@ -46,6 +46,7 @@ export default function LeagueTablePage() {
           isButton={true}
           buttonText="+ Add Team"
           buttonFunction={toggleAddTeamModal}
+          backPath={`/${user_id}`}
         />
       )}
       {leagueData && <Table leagueData={leagueData} />}

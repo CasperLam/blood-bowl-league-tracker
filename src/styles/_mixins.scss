@@ -54,7 +54,7 @@
 
   &:hover {
     opacity: 0.75;
-    border: 3px solid $alt;
+    border-color: $accent-secondary;
   }
 }
 
@@ -76,7 +76,7 @@
 
   &:hover {
     opacity: 0.75;
-    color: $accent-primary;
+    border-color: $accent-primary;
   }
 }
 

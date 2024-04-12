@@ -43,7 +43,11 @@ export default function TeamDetailsPage() {
   return (
     <div className="team-details">
       {teamData && (
-        <Subheader titleText={teamData.head_coach} isButton={false} />
+        <Subheader
+          titleText={teamData.head_coach}
+          isButton={false}
+          backPath={`/league-table/${user_id}/${league_id}`}
+        />
       )}
       {teamData && (
         <TeamDetailsCard

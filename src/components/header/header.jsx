@@ -2,6 +2,7 @@ import "./header.scss";
 import burger from "../../assets/icons/Burger.svg";
 import close from "../../assets/icons/Cross.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +14,10 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <h1 className="header__title header__title--mobile">BBLT</h1>
-        <h1 className="header__title">Blood Bowl League Tracker</h1>
+        <Link to={`/1`}>
+          <h1 className="header__title header__title--mobile">BBLT</h1>
+          <h1 className="header__title">Blood Bowl League Tracker</h1>
+        </Link>
         <button className="header__btn">Log Out</button>
         <img
           src={burger}

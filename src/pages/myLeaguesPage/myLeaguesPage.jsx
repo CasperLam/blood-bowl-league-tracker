@@ -39,6 +39,7 @@ export default function MyLeaguesPage() {
         isButton={true}
         buttonText="+ Add League"
         buttonFunction={toggleAddLeagueModal}
+        backPath="none"
       />
       <section className="leagues">
         {allLeagues &&
