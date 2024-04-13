@@ -12,27 +12,26 @@ export default function Header() {
   };
 
   const { pathname } = useLocation();
-  const isButtonHidden = (pathname) => {
-    let hide = false;
-    if (pathname !== "/signup") hide = true;
-    return hide;
+  const isButtonVisible = (pathname) => {
+    let showButton = false;
+    if (pathname === "/signup" || pathname === "/login") {
+      return (showButton = true);
+    }
+    return showButton;
   };
 
   return (
     <header className="header">
-      <div className="header__container">
+      <div
+        className={`header__container ${
+          isButtonVisible(pathname) ? "header__container--centered" : ""
+        }`}
+      >
         <Link to={`/1`}>
           <h1 className="header__title header__title--mobile">BBLT</h1>
-          <h1
-            className="header__title"
-            // className={`header__title ${
-            //   isButtonHidden(pathname) ? "" : "header__title--centered"
-            // }`}
-          >
-            Blood Bowl League Tracker
-          </h1>
+          <h1 className="header__title">Blood Bowl League Tracker</h1>
         </Link>
-        {isButtonHidden(pathname) && (
+        {!isButtonVisible(pathname) && (
           <>
             <button className="header__btn">Log Out</button>
             <img

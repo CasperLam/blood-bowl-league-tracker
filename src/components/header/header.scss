@@ -7,6 +7,10 @@
   &__container {
     @include container;
     @include flex(row, space-between);
+
+    &--centered {
+      justify-content: center;
+    }
   }
 
   &__title {

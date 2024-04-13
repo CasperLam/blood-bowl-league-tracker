@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./signupPage.scss";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Divider from "../../components/divider/divider";
 
 export default function SignupPage() {
@@ -72,11 +72,15 @@ export default function SignupPage() {
             placeholder="password"
           />
         </div>
-        <button className="signup__btn">Sign Up</button>
+        <button className="signup__btn" type="submit">
+          Sign Up
+        </button>
       </form>
       <Divider />
       <h2 className="signup__login">Login</h2>
-      <button className="signup__login-btn">Login</button>
+      <Link to="/login">
+        <button className="signup__login-btn">Login</button>
+      </Link>
     </section>
   );
 }

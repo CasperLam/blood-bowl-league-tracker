@@ -8,6 +8,7 @@ import Footer from "./components/footer/footer";
 import LeagueTablePage from "./pages/leagueTablePage/leagueTablePage";
 import TeamDetailsPage from "./pages/teamDetailsPage/teamDetailsPage";
 import SignupPage from "./pages/signupPage/signupPage";
+import LoginPage from "./pages/loginPage/loginPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/:user_id" element={<MyLeaguesPage />} />
         <Route
           path="/league-table/:user_id/:league_id"
