@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import "./leagueTablePage.scss";
 import axios from "axios";
 import Modal from "../../components/modal/modal";
+import Unauthorised from "../../components/unauthorised/unauthorised";
 
-export default function LeagueTablePage() {
+export default function LeagueTablePage({ failedAuth }) {
   const apiURL = process.env.REACT_APP_API_URL;
   const { user_id, league_id } = useParams();
 
@@ -34,6 +35,10 @@ export default function LeagueTablePage() {
     setShowAddTeam(!showAddTeam);
   };
 
+  if (failedAuth) {
+    return <Unauthorised />;
+  }
+
   return (
     <div className="leagueTable">
       {leagueData && (
@@ -46,7 +51,7 @@ export default function LeagueTablePage() {
           isButton={true}
           buttonText="+ Add Team"
           buttonFunction={toggleAddTeamModal}
-          backPath={`/${user_id}`}
+          backPath={`/my-leagues/${user_id}`}
         />
       )}
       {leagueData && <Table leagueData={leagueData} />}

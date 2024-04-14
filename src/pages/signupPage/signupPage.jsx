@@ -5,8 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Divider from "../../components/divider/divider";
 
 export default function SignupPage() {
-  const nav = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -42,13 +40,15 @@ export default function SignupPage() {
   }, []);
 
   const apiURL = process.env.REACT_APP_API_URL;
+  const nav = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!validateForm()) return;
 
     try {
-      // await axios.post(`${apiURL}/api/users/register`);
+      await axios.post(`${apiURL}/api/users/register`, formData);
+      nav("/");
     } catch (error) {
       console.log(error);
     }
@@ -126,7 +126,7 @@ export default function SignupPage() {
       </form>
       <Divider />
       <h2 className="signup__login">Login</h2>
-      <Link to="/login">
+      <Link to="/">
         <button className="signup__login-btn">Login</button>
       </Link>
     </section>

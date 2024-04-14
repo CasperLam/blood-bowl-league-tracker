@@ -7,7 +7,7 @@ import axios from "axios";
 export default function LoginPage() {
   const nav = useNavigate();
 
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -20,7 +20,7 @@ export default function LoginPage() {
     let errors = {};
     let isValid = true;
 
-    if (!formData.username) errors.username = "Username is required";
+    if (!formData.email) errors.email = "Email is required";
     if (!formData.password) errors.password = "Password is required";
 
     isValid = Object.keys(errors).length === 0;
@@ -40,7 +40,11 @@ export default function LoginPage() {
     if (!validateForm()) return;
 
     try {
-      await axios.post(`${apiURL}/api/users/login`);
+      const response = await axios.post(`${apiURL}/api/users/login`, formData);
+
+      sessionStorage.setItem("token", response.data.token);
+
+      nav("/my-leagues/1");
     } catch (error) {
       console.log(error);
     }
@@ -51,17 +55,17 @@ export default function LoginPage() {
       <h2 className="login__title">Login</h2>
       <form className="login__form" onSubmit={handleSubmit}>
         <div className="login__wrapper">
-          <label htmlFor="username" className="login__label">
-            username:
+          <label htmlFor="email" className="login__label">
+            Email:
           </label>
           <input
             type="text"
-            id="username"
-            name="username"
+            id="email"
+            name="email"
             className="login__input"
-            value={formData.username}
+            value={formData.email}
             onChange={changeHandler}
-            placeholder="number-1-coach"
+            placeholder="blood@bowl.com"
           />
         </div>
         <div className="login__wrapper">
@@ -78,17 +82,17 @@ export default function LoginPage() {
             placeholder="password"
           />
         </div>
-        {(error.username || error.password) && (
+        {(error.email || error.password) && (
           <div className="login__error">Please complete all fields</div>
         )}
         <button className="login__btn" type="submit">
-          Sign Up
+          Login
         </button>
       </form>
       <Divider />
-      <h2 className="login__signup">Login</h2>
+      <h2 className="login__signup">Sign Up</h2>
       <Link to="/signup">
-        <button className="login__signup-btn">Login</button>
+        <button className="login__signup-btn">Sign Up</button>
       </Link>
     </section>
   );

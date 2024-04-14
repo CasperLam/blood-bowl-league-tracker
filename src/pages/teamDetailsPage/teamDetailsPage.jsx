@@ -6,8 +6,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { createPortal } from "react-dom";
 import Modal from "../../components/modal/modal";
+import Unauthorised from "../../components/unauthorised/unauthorised";
 
-export default function TeamDetailsPage() {
+export default function TeamDetailsPage({ failedAuth }) {
   const apiURL = process.env.REACT_APP_API_URL;
   const { user_id, league_id, team_id } = useParams();
 
@@ -39,6 +40,10 @@ export default function TeamDetailsPage() {
   const toggleEditTeamModal = () => {
     setShowEditTeam(!showEditTeam);
   };
+
+  if (failedAuth) {
+    return <Unauthorised />;
+  }
 
   return (
     <div className="team-details">

@@ -1,0 +1,17 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.unauthorised {
+  @include flex(column);
+  padding: 1rem;
+  gap: 1rem;
+
+  @include tablet-and-desktop {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  &__btn {
+    @include button-primary;
+  }
+}

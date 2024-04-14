@@ -4,7 +4,7 @@ import close from "../../assets/icons/Cross.svg";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ logoutFn, failedAuth }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -14,7 +14,7 @@ export default function Header() {
   const { pathname } = useLocation();
   const isButtonVisible = (pathname) => {
     let showButton = false;
-    if (pathname === "/signup" || pathname === "/login") {
+    if (pathname === "/signup" || pathname === "/" || failedAuth) {
       return (showButton = true);
     }
     return showButton;
@@ -27,13 +27,15 @@ export default function Header() {
           isButtonVisible(pathname) ? "header__container--centered" : ""
         }`}
       >
-        <Link to={`/1`}>
+        <Link to={`/my-leagues/1`}>
           <h1 className="header__title header__title--mobile">BBLT</h1>
           <h1 className="header__title">Blood Bowl League Tracker</h1>
         </Link>
         {!isButtonVisible(pathname) && (
           <>
-            <button className="header__btn">Log Out</button>
+            <button className="header__btn" onClick={logoutFn}>
+              Log Out
+            </button>
             <img
               src={burger}
               alt="menu icon"
@@ -48,7 +50,9 @@ export default function Header() {
                   className="mobile-nav__close"
                   onClick={toggleMenu}
                 />
-                <button className="mobile-nav__btn">Log Out</button>
+                <button className="mobile-nav__btn" onClick={logoutFn}>
+                  Log Out
+                </button>
               </div>
             )}
           </>
