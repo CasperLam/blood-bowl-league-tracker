@@ -42,6 +42,10 @@
     }
   }
 
+  &__error {
+    color: $fail;
+  }
+
   &__btn {
     @include button-secondary;
     margin-top: 1rem;
