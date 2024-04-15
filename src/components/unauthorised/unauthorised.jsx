@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./unauthorised.scss";
 
 export default function Unauthorised() {
+  const nav = useNavigate();
+
+  setTimeout(() => {
+    nav(`/`);
+  }, 2000);
+
   return (
     <main className="unauthorised">
       <h2>You must be logged in to see this page.</h2>
