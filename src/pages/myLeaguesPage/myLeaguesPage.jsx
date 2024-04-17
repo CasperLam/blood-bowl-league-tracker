@@ -26,6 +26,7 @@ export default function MyLeaguesPage({ failedAuth, userData }) {
 
   useEffect(() => {
     getLeagues();
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [showAddLeague, setShowAddLeague] = useState(false);

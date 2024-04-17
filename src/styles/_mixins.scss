@@ -107,3 +107,10 @@
     color: $text-placeholder;
   }
 }
+
+@mixin backing {
+  background-color: $bg-transparent;
+  box-shadow: 0 0 5px 5px $bg-transparent;
+  border-radius: 1rem;
+  padding: 0.25rem;
+}
