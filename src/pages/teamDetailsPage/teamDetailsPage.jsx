@@ -10,7 +10,8 @@ import Unauthorised from "../../components/unauthorised/unauthorised";
 
 export default function TeamDetailsPage({ failedAuth }) {
   const apiURL = process.env.REACT_APP_API_URL;
-  const { user_id, league_id, team_id } = useParams();
+  const user_id = sessionStorage.getItem("user_id");
+  const { league_id, team_id } = useParams();
 
   const [teamData, setTeamData] = useState(null);
 
@@ -51,7 +52,7 @@ export default function TeamDetailsPage({ failedAuth }) {
         <Subheader
           titleText={teamData.head_coach}
           isButton={false}
-          backPath={`/league-table/${user_id}/${league_id}`}
+          backPath={`/league-table/${league_id}`}
         />
       )}
       {teamData && (

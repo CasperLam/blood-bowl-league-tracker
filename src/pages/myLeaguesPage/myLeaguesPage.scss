@@ -14,3 +14,11 @@
     gap: 2rem;
   }
 }
+
+.loading {
+  @include container;
+
+  &__title {
+    text-align: center;
+  }
+}

@@ -10,7 +10,8 @@ import Unauthorised from "../../components/unauthorised/unauthorised";
 
 export default function LeagueTablePage({ failedAuth }) {
   const apiURL = process.env.REACT_APP_API_URL;
-  const { user_id, league_id } = useParams();
+  const user_id = sessionStorage.getItem("user_id");
+  const { league_id } = useParams();
 
   const [leagueData, setLeagueData] = useState(null);
 
@@ -51,7 +52,7 @@ export default function LeagueTablePage({ failedAuth }) {
           isButton={true}
           buttonText="+ Add Team"
           buttonFunction={toggleAddTeamModal}
-          backPath={`/my-leagues/${user_id}`}
+          backPath={`/my-leagues`}
         />
       )}
       {leagueData && <Table leagueData={leagueData} />}

@@ -18,7 +18,7 @@ export default function Table({ leagueData }) {
       cell: (info) => (
         <Link
           to={{
-            pathname: `/team-details/${info.row.original.user_id}/${info.row.original.league_id}/${info.row.original.id}`,
+            pathname: `/team-details/${info.row.original.league_id}/${info.row.original.id}`,
           }}
           className="table__body-link"
         >

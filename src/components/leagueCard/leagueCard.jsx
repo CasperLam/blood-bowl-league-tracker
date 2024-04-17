@@ -8,7 +8,14 @@ import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import Modal from "../modal/modal";
 
-export default function LeagueCard({ id, name, date, renderFn, League }) {
+export default function LeagueCard({
+  id,
+  name,
+  date,
+  renderFn,
+  League,
+  user_id,
+}) {
   const apiURL = process.env.REACT_APP_API_URL;
 
   const [showEditLeague, setShowEditLeague] = useState(false);
@@ -22,8 +29,6 @@ export default function LeagueCard({ id, name, date, renderFn, League }) {
   const toggleDeleteLeagueModal = () => {
     setShowDeleteLeague(!showDeleteLeague);
   };
-
-  const { user_id } = useParams();
 
   const [teamCount, setTeamCount] = useState(0);
 
@@ -46,7 +51,7 @@ export default function LeagueCard({ id, name, date, renderFn, League }) {
     <>
       <Link
         className="leagues__card"
-        to={`/league-table/${user_id}/${id}`}
+        to={`/league-table/${id}`}
         state={{ name: name }}
       >
         <div className="leagues__header">
