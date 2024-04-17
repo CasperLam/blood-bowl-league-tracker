@@ -7,6 +7,7 @@ import Subheader from "../../components/subheader/subheader";
 import { createPortal } from "react-dom";
 import Modal from "../../components/modal/modal";
 import Unauthorised from "../../components/unauthorised/unauthorised";
+import Loading from "../../components/loading/loading";
 
 export default function MyLeaguesPage({ failedAuth, userData }) {
   const apiURL = process.env.REACT_APP_API_URL;
@@ -36,13 +37,7 @@ export default function MyLeaguesPage({ failedAuth, userData }) {
   };
 
   if (!userData) {
-    return (
-      <section className="loading">
-        <h2 className="loading__title">
-          Waking your Staff and Preparing the Dugout
-        </h2>
-      </section>
-    );
+    <Loading />;
   }
 
   if (failedAuth) {

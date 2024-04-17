@@ -3,6 +3,7 @@ import Divider from "../../components/divider/divider";
 import "./loginPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Loading from "../../components/loading/loading";
 
 export default function LoginPage({ loadData, setFailedAuth, failedAuth }) {
   const nav = useNavigate();
@@ -48,7 +49,7 @@ export default function LoginPage({ loadData, setFailedAuth, failedAuth }) {
 
       setTimeout(() => {
         nav("/my-leagues");
-      }, 1000);
+      }, 2000);
 
       loadData();
     } catch (error) {
@@ -105,13 +106,7 @@ export default function LoginPage({ loadData, setFailedAuth, failedAuth }) {
           </Link>
         </>
       )}
-      {!failedAuth && (
-        <section className="loading">
-          <h2 className="loading__title">
-            Waking your Staff and Preparing the Dugout
-          </h2>
-        </section>
-      )}
+      {!failedAuth && <Loading />}
     </section>
   );
 }
