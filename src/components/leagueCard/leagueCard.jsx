@@ -2,13 +2,19 @@ import edit_icon from "../../assets/icons/edit_icon.svg";
 import delete_icon from "../../assets/icons/delete_icon.svg";
 import "./leagueCard.scss";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import Modal from "../modal/modal";
 
-export default function LeagueCard({ id, name, date, renderFn, League }) {
+export default function LeagueCard({
+  id,
+  name,
+  date,
+  renderFn,
+  League,
+  user_id,
+}) {
   const apiURL = process.env.REACT_APP_API_URL;
 
   const [showEditLeague, setShowEditLeague] = useState(false);
@@ -22,8 +28,6 @@ export default function LeagueCard({ id, name, date, renderFn, League }) {
   const toggleDeleteLeagueModal = () => {
     setShowDeleteLeague(!showDeleteLeague);
   };
-
-  const { user_id } = useParams();
 
   const [teamCount, setTeamCount] = useState(0);
 
@@ -46,7 +50,7 @@ export default function LeagueCard({ id, name, date, renderFn, League }) {
     <>
       <Link
         className="leagues__card"
-        to={`/league-table/${user_id}/${id}`}
+        to={`/league-table/${id}`}
         state={{ name: name }}
       >
         <div className="leagues__header">
@@ -73,10 +77,10 @@ export default function LeagueCard({ id, name, date, renderFn, League }) {
         </div>
         <div className="leagues__img"></div>
         <div className="leagues__container">
-          <p className="leagues_date">
+          <p className="leagues__date">
             Created: {new Date(date).toLocaleDateString()}
           </p>
-          <p className="leagues_teams">Teams: {teamCount}</p>
+          <p className="leagues__teams">Teams: {teamCount}</p>
         </div>
       </Link>
       {showEditLeague &&

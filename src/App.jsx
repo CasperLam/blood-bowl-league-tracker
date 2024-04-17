@@ -9,7 +9,6 @@ import LeagueTablePage from "./pages/leagueTablePage/leagueTablePage";
 import TeamDetailsPage from "./pages/teamDetailsPage/teamDetailsPage";
 import SignupPage from "./pages/signupPage/signupPage";
 import LoginPage from "./pages/loginPage/loginPage";
-import LoadingPage from "./pages/loadingPage/loadingPage";
 
 function App() {
   const apiURL = process.env.REACT_APP_API_URL;
@@ -28,6 +27,7 @@ function App() {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData(data);
+      sessionStorage.setItem("user_id", data.id);
     } catch (error) {
       console.log(error);
       setFailedAuth(true);
@@ -40,6 +40,7 @@ function App() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user_id");
     setUserData(null);
     setFailedAuth(true);
   };
@@ -48,22 +49,33 @@ function App() {
     <BrowserRouter>
       <Header logoutFn={handleLogout} failedAuth={failedAuth} />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        {/* <Route
-          path="/my-leagues"
-          element={<LoadingPage failedAuth={failedAuth} userData={userData} />}
-        /> */}
         <Route
-          path="/my-leagues/:user_id"
-          element={<MyLeaguesPage failedAuth={failedAuth} />}
+          path="/"
+          element={
+            <LoginPage
+              loadData={loadData}
+              setFailedAuth={setFailedAuth}
+              failedAuth={failedAuth}
+            />
+          }
+        />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/my-leagues"
+          element={
+            <MyLeaguesPage
+              failedAuth={failedAuth}
+              loadData={loadData}
+              userData={userData}
+            />
+          }
         />
         <Route
-          path="/league-table/:user_id/:league_id"
+          path="/league-table/:league_id"
           element={<LeagueTablePage failedAuth={failedAuth} />}
         />
         <Route
-          path="/team-details/:user_id/:league_id/:team_id"
+          path="/team-details/:league_id/:team_id"
           element={<TeamDetailsPage failedAuth={failedAuth} />}
         />
       </Routes>

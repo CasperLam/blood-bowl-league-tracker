@@ -4,7 +4,7 @@ import "./loginPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function LoginPage() {
+export default function LoginPage({ loadData, setFailedAuth, failedAuth }) {
   const nav = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -42,9 +42,15 @@ export default function LoginPage() {
     try {
       const response = await axios.post(`${apiURL}/api/users/login`, formData);
 
+      setFailedAuth(false);
+
       sessionStorage.setItem("token", response.data.token);
 
-      nav("/my-leagues/1");
+      setTimeout(() => {
+        nav("/my-leagues");
+      }, 1000);
+
+      loadData();
     } catch (error) {
       console.log(error);
     }
@@ -52,48 +58,60 @@ export default function LoginPage() {
 
   return (
     <section className="login">
-      <h2 className="login__title">Login</h2>
-      <form className="login__form" onSubmit={handleSubmit}>
-        <div className="login__wrapper">
-          <label htmlFor="email" className="login__label">
-            Email:
-          </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            className="login__input"
-            value={formData.email}
-            onChange={changeHandler}
-            placeholder="blood@bowl.com"
-          />
-        </div>
-        <div className="login__wrapper">
-          <label htmlFor="password" className="login__label">
-            Password:
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            className="login__input"
-            value={formData.password}
-            onChange={changeHandler}
-            placeholder="password"
-          />
-        </div>
-        {(error.email || error.password) && (
-          <div className="login__error">Please complete all fields</div>
-        )}
-        <button className="login__btn" type="submit">
-          Login
-        </button>
-      </form>
-      <Divider />
-      <h2 className="login__signup">Sign Up</h2>
-      <Link to="/signup">
-        <button className="login__signup-btn">Sign Up</button>
-      </Link>
+      {failedAuth && (
+        <>
+          {" "}
+          <h2 className="login__title">Login</h2>
+          <form className="login__form" onSubmit={handleSubmit}>
+            <div className="login__wrapper">
+              <label htmlFor="email" className="login__label">
+                Email:
+              </label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                className="login__input"
+                value={formData.email}
+                onChange={changeHandler}
+                placeholder="blood@bowl.com"
+              />
+            </div>
+            <div className="login__wrapper">
+              <label htmlFor="password" className="login__label">
+                Password:
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="login__input"
+                value={formData.password}
+                onChange={changeHandler}
+                placeholder="password"
+              />
+            </div>
+            {(error.email || error.password) && (
+              <div className="login__error">Please complete all fields</div>
+            )}
+            <button className="login__btn" type="submit">
+              Login
+            </button>
+          </form>
+          <Divider />
+          <h2 className="login__signup">Sign Up</h2>
+          <Link to="/signup">
+            <button className="login__signup-btn">Sign Up</button>
+          </Link>
+        </>
+      )}
+      {!failedAuth && (
+        <section className="loading">
+          <h2 className="loading__title">
+            Waking your Staff and Preparing the Dugout
+          </h2>
+        </section>
+      )}
     </section>
   );
 }

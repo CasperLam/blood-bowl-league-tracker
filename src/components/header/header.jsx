@@ -27,15 +27,17 @@ export default function Header({ logoutFn, failedAuth }) {
           isButtonVisible(pathname) ? "header__container--centered" : ""
         }`}
       >
-        <Link to={`/my-leagues/1`}>
+        <Link to={failedAuth ? `/` : `/my-leagues`}>
           <h1 className="header__title header__title--mobile">BBLT</h1>
           <h1 className="header__title">Blood Bowl League Tracker</h1>
         </Link>
         {!isButtonVisible(pathname) && (
           <>
-            <button className="header__btn" onClick={logoutFn}>
-              Log Out
-            </button>
+            <Link to={`/`}>
+              <button className="header__btn" onClick={logoutFn}>
+                Log Out
+              </button>
+            </Link>
             <img
               src={burger}
               alt="menu icon"
@@ -50,9 +52,11 @@ export default function Header({ logoutFn, failedAuth }) {
                   className="mobile-nav__close"
                   onClick={toggleMenu}
                 />
-                <button className="mobile-nav__btn" onClick={logoutFn}>
-                  Log Out
-                </button>
+                <Link to={`/`}>
+                  <button className="mobile-nav__btn" onClick={logoutFn}>
+                    Log Out
+                  </button>
+                </Link>
               </div>
             )}
           </>

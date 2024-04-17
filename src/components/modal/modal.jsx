@@ -16,7 +16,8 @@ export default function Modal({
   leagueCardId,
 }) {
   const apiURL = process.env.REACT_APP_API_URL;
-  const { user_id, league_id, team_id } = useParams();
+  const user_id = sessionStorage.getItem("user_id");
+  const { league_id, team_id } = useParams();
   const [teamFormData, setTeamFormData] = useState(
     currentData
       ? {
@@ -77,13 +78,13 @@ export default function Modal({
     await axios.delete(
       `${apiURL}/api/teams/${user_id}/${league_id}/${team_id}`
     );
-    nav(`/league-table/${user_id}/${league_id}`);
+    nav(`/league-table/${league_id}`);
   };
 
   const handleDeleteLeague = async (league_id) => {
     await axios.delete(`${apiURL}/api/leagues/${user_id}/${league_id}`);
-    renderFn();
     closeFn();
+    renderFn();
   };
 
   return (

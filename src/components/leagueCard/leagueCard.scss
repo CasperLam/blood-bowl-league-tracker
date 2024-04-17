@@ -21,24 +21,23 @@
 
   &__header {
     @include flex(row, space-between);
-    width: 100%;
+    width: calc(100% - 2rem);
+    position: absolute;
+
+    @include tablet-and-desktop {
+      width: calc(100% - 4rem);
+    }
   }
 
   &__name {
-    background-color: $bg-transparent;
-    box-shadow: 0 0 5px 5px $bg-transparent;
-    border-radius: 1rem;
-    padding: 0.25rem;
+    @include backing;
     max-width: 60%;
   }
 
   &__buttons {
     @include flex(column, space-between);
+    @include backing;
     height: 3.25rem;
-    background-color: $bg-transparent;
-    box-shadow: 0 0 5px 5px $bg-transparent;
-    border-radius: 1rem;
-    padding: 0.25rem;
   }
 
   &__icon {
@@ -52,10 +51,22 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 10rem;
-    margin-bottom: 1rem;
   }
 
   &__container {
     @include flex(row, space-between);
+    width: calc(100% - 2rem);
+    position: absolute;
+    bottom: 1rem;
+
+    @include tablet-and-desktop {
+      width: calc(100% - 4rem);
+      bottom: 2rem;
+    }
+  }
+
+  &__date,
+  &__teams {
+    @include backing;
   }
 }
