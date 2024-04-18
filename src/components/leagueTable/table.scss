@@ -2,8 +2,15 @@
 @use "../../styles/mixins" as *;
 
 .table {
-  border-collapse: collapse;
-  width: 100%;
+  background-color: $alt;
+  padding: 0.3rem;
+  border-radius: 1rem 1rem 0.5rem 0.5rem;
+
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: $text-secondary;
+  }
 
   &__head {
     background-color: $alt;

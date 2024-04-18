@@ -56,8 +56,8 @@ export default function Table({ leagueData }) {
   });
 
   return (
-    <div>
-      <table className="table">
+    <div className="table">
+      <table className="table__table">
         <thead className="table__head">
           {table.getHeaderGroups().map((headerGroup) => {
             return (
