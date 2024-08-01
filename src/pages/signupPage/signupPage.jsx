@@ -9,7 +9,7 @@ export default function SignupPage() {
     email: "",
     username: "",
     password: "",
-    // confirm_password: "",
+    confirm_password: "",
   });
 
   const changeHandler = (event) => {
@@ -26,8 +26,10 @@ export default function SignupPage() {
     if (!formData.email) errors.email = "Email is required";
     if (!formData.username) errors.username = "Username is required";
     if (!formData.password) errors.password = "Password is required";
-    // if (!formData.confirm_password)
-    //   errors.confirm_password = "Passwords must match";
+    if (!formData.confirm_password)
+      errors.confirm_password = "Confirm password is required";
+    if (formData.confirm_password !== formData.password)
+      errors.password_match = "Passwords must match";
 
     isValid = Object.keys(errors).length === 0;
 
@@ -66,7 +68,9 @@ export default function SignupPage() {
             type="email"
             id="email"
             name="email"
-            className="signup__input"
+            className={`signup__input ${
+              error.email ? "signup__input--error" : ""
+            }`}
             value={formData.email}
             onChange={changeHandler}
             placeholder="blood@bowl.co.uk"
@@ -80,7 +84,9 @@ export default function SignupPage() {
             type="text"
             id="username"
             name="username"
-            className="signup__input"
+            className={`signup__input ${
+              error.username ? "signup__input--error" : ""
+            }`}
             value={formData.username}
             onChange={changeHandler}
             placeholder="number-1-coach"
@@ -94,13 +100,15 @@ export default function SignupPage() {
             type="password"
             id="password"
             name="password"
-            className="signup__input"
+            className={`signup__input ${
+              error.password ? "signup__input--error" : ""
+            }`}
             value={formData.password}
             onChange={changeHandler}
             placeholder="password"
           />
         </div>
-        {/* <div className="signup__wrapper">
+        <div className="signup__wrapper">
           <label htmlFor="confirm_password" className="signup__label">
             Confirm password:
           </label>
@@ -108,18 +116,25 @@ export default function SignupPage() {
             type="password"
             id="confirm_password"
             name="confirm_password"
+            className={`signup__input ${
+              error.confirm_password || error.password_match
+                ? "signup__input--error"
+                : ""
+            }`}
             value={formData.confirm_password}
             onChange={changeHandler}
-            className="signup__input"
             placeholder="password"
           />
-        </div> */}
-        {(error.username || error.email || error.password) && ( // || error.confirm_password
+        </div>
+        {(error.username ||
+          error.email ||
+          error.password ||
+          error.confirm_password) && (
           <div className="signup__error">Please complete all fields</div>
         )}
-        {/* {error.password === error.confirm_password && (
+        {error.password_match && (
           <div className="signup__error">Passwords must match</div>
-        )} */}
+        )}
         <button className="signup__btn" type="submit">
           Sign Up
         </button>
