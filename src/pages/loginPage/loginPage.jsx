@@ -72,7 +72,9 @@ export default function LoginPage({ loadData, setFailedAuth, failedAuth }) {
                 type="text"
                 id="email"
                 name="email"
-                className="login__input"
+                className={`login__input ${
+                  error.email ? "login__input--error" : ""
+                }`}
                 value={formData.email}
                 onChange={changeHandler}
                 placeholder="blood@bowl.com"
@@ -86,7 +88,9 @@ export default function LoginPage({ loadData, setFailedAuth, failedAuth }) {
                 type="password"
                 id="password"
                 name="password"
-                className="login__input"
+                className={`login__input ${
+                  error.password ? "login__input--error" : ""
+                }`}
                 value={formData.password}
                 onChange={changeHandler}
                 placeholder="password"
